@@ -1,6 +1,6 @@
 ---
-title: first-blog-post
-date: 2024-12-02
+title: "First-Blog-Post"
+date: "2024-12-02"
 ---
 
 # h1
