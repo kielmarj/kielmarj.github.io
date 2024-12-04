@@ -2,11 +2,15 @@
 async function loadJoke() {
     try {
         const response = await fetch('https://joke.deno.dev/');
+        if (!response.ok) return; // Stop if the response isn't valid
         const data = await response.json();
-        document.getElementById('joke').innerText = data.joke;
-    } catch (error) {
-        console.error('Failed to load the joke:', error);
-        document.getElementById('joke').innerText = 'Please move along, there is nothing to see here.';
+        const { setup, punchline } = data;
+
+        if (setup && punchline) {
+            document.getElementById('joke').innerHTML = `${setup}<br>${punchline}`;
+        }
+    } catch {
+        // Do nothing if an error occurs
     }
 }
 
