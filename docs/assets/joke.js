@@ -6,7 +6,7 @@ async function loadJoke() {
         document.getElementById('joke').innerText = data.joke;
     } catch (error) {
         console.error('Failed to load the joke:', error);
-        document.getElementById('joke').innerText = '';
+        document.getElementById('joke').innerText = 'Please move along, there is nothing to see here.';
     }
 }
 
