@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title | default: site.title }}</title>
+  <link rel="stylesheet" href="assets/default.css">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <p>kielmarj.github.io<p>
+      <p>{{ page.title }}</p>
+      <nav>
+        <ul class="dropdown">
+          <li class="dropdown-item">
+            <span class="hamburger-icon">&#9776;</span>
+            <ul class="dropdown-content">
+              <li><a href="/about.html">About</a></li>
+              <li><a href="/projects.html">Projects</a></li>
+              <li><a href="/blog.html">Blog</a></li>
+              <li><a href="/MIT-LICENSE/index.html">License</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    {{ content | default: "Nothing to see here, move along." }}
+  </main>
+  <hr>
+  <footer>
+    <p>&copy; <span id="currentYear"></span> Jessica Kielmar | <a href="https://github.com/kielmarj" target="_blank">Fork Me</a></p>
+    <p>Licensed under the <a href="/MIT-LICENSE/index.html" target="_blank">MIT License</a>
+  </footer>
+  <script src="/assets/default.js"></script>
+</body>
+</html>
