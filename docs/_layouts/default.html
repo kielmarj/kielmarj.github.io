@@ -10,7 +10,8 @@
 <body>
   <header>
     <div class="header-container">
-      <p style="text-size: 16rem;"><a href="{{ base.url }}">{{ base.url }}</a><br>{{ page.title }}</p>
+      <p style="text-size: 18px;"><a href="kielmarj.github.io">{{ base.url }}</a></p><br>
+      <p id="joke" style="font-size: 12px;">Loading...</p>
       <nav>
         <ul class="dropdown">
           <li class="dropdown-item">
@@ -27,6 +28,7 @@
     </div>
   </header>
   <main>
+    <h1>{{ page.title }}</h1>
     {{ content | default: "Nothing to see here, move along." }}
   </main>
   <hr>
