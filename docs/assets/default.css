@@ -1,4 +1,3 @@
-/* Base styles */
 :root {
   --bg-color: #1e1e2f;
   --text-color: #e4e4e7;
@@ -6,18 +5,13 @@
   --secondary-color: #7c4dff;
 }
 
-html, body {
+html {
   margin: 0;
   padding: 0;
   height: 100%;
   font-family: Arial, sans-serif;
   background: linear-gradient(135deg, var(--bg-color), var(--secondary-color));
   color: var(--text-color);
-}
-
-body {
-  display: flex;
-  flex-direction: column;
 }
 
 header {
@@ -32,18 +26,8 @@ header {
   align-items: center;
 }
 
-h1 {
-  margin: 0;
-}
-
 nav {
   position: relative;
-}
-
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
 }
 
 a {
@@ -67,7 +51,7 @@ a:hover {
 }
 
 .dropdown-content {
-  display: none;
+  display: block;
   position: absolute;
   background-color: var(--bg-color);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
@@ -76,17 +60,12 @@ a:hover {
   right: 0;
 }
 
-.dropdown-item:hover .dropdown-content {
-  display: block;
-}
-
 .dropdown-content li {
   padding: 0.5rem 0;
 }
 
-main {
-  flex: 1;
-  padding: 2rem;
+h1 {
+  text-align: center;
 }
 
 footer {
@@ -94,12 +73,4 @@ footer {
   background-color: var(--secondary-color);
   color: var(--text-color);
   padding: 1rem 0;
-}
-
-footer a {
-  color: var(--highlight-color);
-}
-
-footer a:hover {
-  text-decoration: underline;
 }
