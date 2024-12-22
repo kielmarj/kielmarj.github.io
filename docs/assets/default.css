@@ -64,10 +64,6 @@ a:hover {
   padding: 0.5rem 0;
 }
 
-.dropdown-item:hover .dropdown-content {
-  display: block;
-}
-
 h1 {
   text-align: center;
 }
