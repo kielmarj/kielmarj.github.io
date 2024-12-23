@@ -1,37 +1,42 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ page.title | default: site.title }}</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-  <link rel="stylesheet" href="/assets/default.css">
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>{{ page.title | default: site.title }}</title>
+	<!-- Normalize CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+	<link rel="stylesheet" href="/assets/default.css" />
 </head>
+
 <body>
-  <header>
-    <div class="header-container">
-        <span class="header-left"><p style="font-size: 18px;"><a href="https://kielmarj.github.io">kielmarj.github.io</a></p></span>
-        <nav>
-        <div class="dropdown">
-          <span class="hamburger-icon">&#9776;</span>
-          <ul class="dropdown-content">
-            <li><a href="/about.html">About</a></li>
-            <li><a href="/projects.html">Projects</a></li>
-            <li><a href="/blog/">Blog</a></li>
-            <li><a href="/MIT-LICENSE/" target="_blank">License</a></li>
-          </ul>
-        </div>
-      </nav>
-    </div>
-  </header>
-  <main>
-    <h1>{{ page.title }}</h1>
-    {{ content | default: "..." }}
-  </main>
-  <footer>
-    <p>&copy; <span id="currentYear"></span> Jessica Kielmar | <a href="https://github.com/kielmarj" target="_blank">Fork Me</a></p>
-    <p>Licensed under the <a href="/MIT-LICENSE/" target="_blank">MIT License</a>
-  </footer>
-  <script src="/assets/default.js"></script>
+	<header>
+		<a href="https://kielmarj.github.io">kielmarj.github.io</a>
+		<nav>
+			<ul class="header-nav">
+				<li><a href="/about.html">About</a></li>
+				<li><a href="/projects.html">Projects</a></li>
+				<li><a href="/blog/">Blog</a></li>
+				<li><a href="/MIT-LICENSE/" target="_blank">License</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+		<h1>{{ page.title }}</h1>
+		{{ content | default: "..." }}
+	</main>
+	<footer>
+		<p>
+			&copy; <span id="currentYear"></span> Jess Kielmar |
+			<a href="https://github.com/kielmarj" target="_blank">GitHub</a>
+		</p>
+		<p>
+			Licensed under the 
+			<a href="/MIT-LICENSE/" target="_blank">MIT License</a>
+		</p>
+	</footer>
+	<script src="/assets/default.js"></script>
 </body>
+
 </html>
