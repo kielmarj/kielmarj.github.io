@@ -5,25 +5,16 @@
   --secondary-color: #7c4dff;
 }
 
-html {
+body {
   margin: 0;
   padding: 0;
-  height: 100%;
-  font-family: Arial, sans-serif;
+  height: 1vh;
   background: linear-gradient(135deg, var(--bg-color), var(--secondary-color));
   color: var(--text-color);
 }
 
 header {
-  background-color: var(--secondary-color);
   padding: 1rem;
-  color: var(--text-color);
-  display: flex;
-  justify-content: space-between;
-}
-
-nav {
-  position: relative;
 }
 
 a {
@@ -36,25 +27,13 @@ a:hover {
   text-decoration: underline;
 }
 
-.header-nav {
-  position: relative;
-  display: inline-block;
-  display: none;
-  position: absolute;
-  background-color: var(--bg-color);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  padding: 1rem;
-  z-index: 1;
-  right: 0;
-}
-
-.header-nav li {
-  padding: 0.5rem 0;
+ul.header-nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 footer {
   text-align: center;
-  background-color: var(--secondary-color);
-  color: var(--text-color);
   padding: 1rem 0;
 }
