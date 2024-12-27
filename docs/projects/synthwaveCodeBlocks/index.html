@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<!-- 
+  Author: (c) 2024 Jess Kielmar
+          kielmarj AT gmail DOT com
+          https://github.com/kielmarj
+            *****(hire me!)*****
+  License: MIT
+-->
+<html lang="en">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Synthwave '84 Code Blocks with Copy Button and Syntax Highlighting</title>
+  <!-- Orbitron font for header -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Share Tech Mono font for all other text -->
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <!-- Synthwave '84 theme for code blocks -->
+  <link rel="stylesheet" href="https://gen-w-deja.github.io/prism-themes/themes/prism-synthwave84.css">
+  <!-- Prism.js for code block line numbers -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+
+<body>
+
+
+  <header>
+    <h1>Synthwave '84 Code Blocks</h1>
+  </header>
+
+
+  <main>
+
+
+    <p>This page demonstrates <strong><b>custom code blocks</b></strong> with syntax highlighting powered by <a href="https://prismjs.com/" target="_blank">Prism.js</a>. To learn how to use these code blocks on your own page, see the <a href="#instructions">Instructions</a> and <a href="#usage">Usage Notes</a>. There is also a brief guide on <a href="#escaping-html">How to Escape HTML Characters</a> in <code>&lt;code&gt;</code> tags at the bottom of this page.</p>
+
+
+    <h2>Features</h2>
+    <p>
+      <ul>
+        <li><a href="https://github.com/PrismJS/prism-themes/blob/master/themes%2Fprism-synthwave84.css" target="_blank" rel="noopener noreferrer">Synthwave '84</a> theme for code blocks with vibrant <b>syntax highlighting</b>, modified slightly from the original to include a custom linear-gradient background.</li>
+        <li><b>Language-specific</b> syntax highlighting for: <code>HTML, CSS, JavaScript, Bash, Python</code></li>
+        <li><b>Copy button</b> to easily copy code snippets. <i>Copy button updated to work on SoloLearn!</i></li>
+        <li><b>Custom font</b>: <a href="https://fonts.google.com/specimen/Share+Tech+Mono" target="_blank">Share Tech Mono</a>.</li>
+        <li><b>Optional line numbers</b>: See the HTML code block below for a demo.</li>
+      </ul>
+    </p>
+
+
+    <h2>Code Block Demos</h2>
+    <p><i><b>Note</b>: code blocks with long lines are horizontally scrollable.</i></p>
+    <!-- JavaScript code block -->
+    <h3>JavaScript</h3>
+    <div class="code-block">
+      <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      <pre><code class="language-javascript">function greet(name) {
+  console.log(`Hello, ${name}!`);
+}
+
+greet("Prism.js");</code></pre>
+    </div>
+    <!-- HTML code block -->
+    <h3>HTML</h3>
+    <div class="code-block">
+      <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      <pre class="line-numbers"><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Hello World&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Welcome to Prism.js!&lt;/h1&gt;
+    &lt;p&gt;This is a demo of HTML highlighting.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    </div>
+    <!-- CSS code block -->
+    <h3>CSS</h3>
+    <div class="code-block">
+      <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      <pre><code class="language-css">body {
+  background-color: #282c34;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  font-size: 2rem;
+  text-align: center;
+}
+
+p {
+  margin: 20px;
+  line-height: 1.5;
+}</code></pre>
+    </div>
+    <!-- bash code block -->
+    <h3>Bash</h3>
+    <div class="code-block">
+      <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      <pre><code class="language-bash">#!/bin/bash
+echo "Welcome to Prism.js!"
+mkdir demo
+cd demo
+touch example.txt
+echo "This is a sample file." &gt;example.txt</code></pre>
+    </div>
+    <!-- python code block -->
+    <h3>Python</h3>
+    <div class="code-block">
+      <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      <pre><code class="language-python">def greet(name):
+    print(f"Hello, {name}!")
+
+if __name__ == "__main__":
+    greet("Prism.js")</code></pre>
+    </div>
+    <br>
+
+
+    <h2 id="instructions">Code Block Instructions</h2>
+
+    <details><summary> Prism.js</summary>
+    <p>The <b>Core Prism.js library</b> includes syntax highlighting for <code>HTML, CSS, and JavaScript</code>. The core library is required. You can include other languages by linking to their Prism.js libraries. Add the following to <code>index.html</code> above the closing <code>&lt;/body&gt;</code> tag to include syntax highlighting for <code>HTML, CSS, JavaScript, Bash, and Python</code>:
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-html">&lt;!-- Required - Prism.js Core (HTML, CSS, JavaScript) --&gt;
+&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"&gt;&lt;/script&gt;
+&lt;!-- Optional - Bash --&gt;
+&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"&gt;&lt;/script&gt;
+&lt;!-- Optional - Python --&gt;
+&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"&gt;&lt;/script&gt;</code></pre>
+      </div>
+    </p>
+    </details>
+
+
+    <details><summary> Synthwave '84 Theme</summary>
+    <p>Add the <b>Synthwave '84</b> syntax highlighting theme to your code blocks by including the following in the <code>&lt;head&gt;</code> of <code>index.html</code>:
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-html">&lt;!-- Synthwave &apos;84 Syntax Highlighting --&gt;
+&lt;link rel="stylesheet" href="https://gen-w-deja.github.io/prism-themes/themes/prism-synthwave84.css"&gt;</code></pre>
+      </div>
+    </p>
+    </details>
+
+
+    <details><summary> Copy Button</summary>
+    <p>Add this to <code>script.js</code>:
+    <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-javascript">// JavaScript function to copy code to clipboard with fallback for older browsers
+// (or playgrounds like SoloLearn)
+function copyCode(button) {
+  const code = button.nextElementSibling.textContent;
+
+  // Modern method: navigator.clipboard
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(code)
+      .then(() => {
+        button.textContent = 'Copied!';
+        setTimeout(() => {
+          button.textContent = 'Copy';
+        }, 2000);
+      })
+      .catch(err => {
+        console.error('Failed to copy text: ', err);
+      });
+  } else {
+    // Fallback method: textarea and execCommand
+    const tempInput = document.createElement('textarea');
+    tempInput.value = code;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+
+    try {
+      document.execCommand('copy');
+      button.textContent = 'Copied!';
+      setTimeout(() => {
+        button.textContent = 'Copy';
+      }, 2000);
+    } catch (err) {
+      console.error('Failed to copy text: ', err);
+    }
+
+    document.body.removeChild(tempInput);
+  }
+}</code></pre>
+      </div>
+    </p>
+        <p>To style the copy button, add this to <code>styles.css</code>:
+    <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-css">:not(pre) &gt; code[class*="language-"],
+pre[class*="language-"] {
+  /* Prevents copy button from overlapping with code block text */
+  padding-top: 30px;
+}
+
+/* Copy button */
+.copy-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: #f92aad;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Share Tech Mono', monospace !important;
+  font-size: .70rem;
+  font-style: italic;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 0 2px #000, 0 0 10px #fc1f2c75, 0 0 5px #fc1f2c75, 0 0 25px #fc1f2c75;
+  /* Keeps the copy button on the top layer */
+  z-index: 10;
+}
+
+.copy-btn:hover {
+  background-color: #67cdcc;
+  transform: scale(1.05);
+}</code></pre>
+      </div>
+    </p>
+    </details>
+
+
+    <details><summary> Line Numbers</summary>
+    <p>Line numbers can optionally be included by adding this in the <code>&lt;head&gt;</code> of <code>index.html</code>:
+    <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-html">&lt;!-- Optional - Prism.js line numbers - Stylesheet --&gt;
+&lt;link href=&quot;https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css&quot; rel=&quot;stylesheet&quot; /&gt;</code></pre>
+      </div>
+    </p>
+    
+    <p>And add this to <code>index.html</code> above the closing <code>&lt;/body&gt;</code> tag:
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-html">&lt;!-- Optional - Prism.js line numbers - Script --&gt;
+&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"&gt;&lt;/script&gt;</code></pre>
+      </div>
+    </p>
+    </details>
+
+
+    <details><summary> Custom Background</summary>
+    <p>To use the <b>custom linear-gradient background</b> featured in these code blocks, include this in <code>styles.css</code>:
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-css">:not(pre) &gt; code[class*="language-"],
+pre[class*="language-"] {
+  /* Code block background gradient */
+  background-image: linear-gradient(to bottom, #2a2139, #34294f, #8f298f80) !important;
+}
+
+pre {
+  /* Prevents discolored gaps at the top and bottom of code blocks */
+  margin: 0 !important;
+}</code></pre>
+      </div>
+    </p>
+    </details>
+
+
+    <details><summary> Custom Font</summary>
+    <p>To change the code block font to <b>Share Tech Mono</b>, add this to the <code>&lt;head&gt;</code> of <code>index.html</code>:
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-html">&lt;!-- Share Tech Mono Font for Code Blocks --&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet"&gt;</code></pre>
+      </div>
+    </p>
+    <p>Use <code>class="code-block"</code> in the <code>html &lt;div&gt;</code>(s) containing your code, and add this to <code>styles.css</code>:
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-css">.code-block code {
+  font-family: 'Share Tech Mono', monospace !important;
+}</code></pre>
+      </div>
+    </p>
+    </details>
+
+
+    <details><summary> Additional Custom Styling</summary>
+    <p>For the remaining custom code block styling used here, use <code>class="code-block"</code> in the <code>html &lt;div&gt;</code>(s) containing your code, and add this to <code>styles.css</code>:
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-css">/* Additional code block styling */
+.code-block {
+  position: relative;
+  width: 95%rem;
+  max-width: 780px;
+  border: 1px outset magenta;
+  border-radius: 10px;
+  padding: 0;
+  font-size: .90rem;
+  box-shadow: 2px 2px 8px cyan;
+  overflow: scroll;
+}</code></pre>
+      </div>
+    </p>
+    </details>
+    
+    
+     <details><summary>More Options</summary>
+    <p>For additional languages and Prism.js plugins, visit the <a href="https://prismjs.com/download.html" target="_blank">Prism.js downloads</a> page. Preview more syntax highlighting themes on the <a href="https://github.com/PrismJS/prism-themes" target="_blank">prism-themes</a> GitHub repository.</p>
+    </details>
+
+
+    <h2 id="usage">Usage Notes</h2>
+    <p>To insert a code block in <code>index.html</code>, follow this structure:
+    <div class="code-block">
+      <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      <pre><code class="language-html">&lt;!-- Opening tags --&gt;
+&lt;div class=&quot;code-block&quot;&gt;
+&lt;button class=&quot;copy-btn&quot; onclick=&quot;copyCode(this)&quot;&gt;Copy&lt;/button&gt;
+&lt;!-- Line numbers are optional.
+Remove the line-numbers class from pre to exclude them.
+(but keep the pre tag!) --&gt;
+&lt;pre class=&quot;line-numbers&quot;&gt;
+&lt;!-- Insert language in the code class, after the hyphen.
+This example uses html. --&gt;
+&lt;code class=&quot;language-html&quot;&gt;
+
+&lt;!-- Insert code here --&gt;
+
+&lt;!-- Closing tags --&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </p>
+
+    <p>Here is the same code as above, without comments, for easier copy-paste, using 'CODE' as placeholder text:
+    <div class="code-block">
+      <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      <pre><code class="language-html">&lt;div class=&quot;code-block&quot;&gt;&lt;button class=&quot;copy-btn&quot; onclick=&quot;copyCode(this)&quot;&gt;Copy&lt;/button&gt;
+    &lt;pre class=&quot;line-numbers&quot;&gt;&lt;code class=&quot;language-html&quot;&gt;CODE&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </p>
+    <p>The above code would display this:
+    <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+    <pre class="line-numbers"><code class="language-html">CODE</code></pre></div>
+    </p>
+    <br>
+
+    
+    <h2 id="escaping-html">How to Escape HTML Characters</h2>
+    <p>Certain HTML characters within <code>&lt;code&gt;</code> tags must be escaped to prevent the browser from attempting to interpret them.</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Unescaped  Character</th>
+                <th>Escaped Representation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>&lt;</code></td>
+                <td><code>&amp;lt;</code></td>
+            </tr>
+            <tr>
+                <td><code>&gt;</code></td>
+                <td><code>&amp;gt;</code></td>
+            </tr>
+            <tr>
+                <td><code>&amp;</code></td>
+                <td><code>&amp;amp;</code></td>
+            </tr>
+            <tr>
+                <td><code>&quot;</code></td>
+                <td><code>&amp;quot;</code></td>
+            </tr>
+            <tr>
+                <td><code>&#39;</code></td>
+                <td><code>&amp;apos;</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Example</h3>
+    <p>
+    <b>Unescaped HTML:</b>
+    <pre style="border:1px solid aqua;padding:2%;">
+<code>&lt;</code>div class=<code>"</code>example<code>"&gt;
+    &lt;</code>p<code>&gt;</code>This is a paragraph.<code>&lt;</code>/p<code>&gt;
+&lt;</code>/div<code>&gt;</code></pre>
+    </p>
+    <p>To include the above HTML within <code>&lt;code&gt;</code> tags, the <b>Escaped HTML</b> would look like this:
+    <pre style="border:1px solid aqua;padding:2%;"><code>&amp;lt;</code>div class=<code>&amp;quot;</code>example<code>&amp;quot;&amp;gt;
+    &amp;lt;</code>p<code>&amp;gt;</code>This is a paragraph.<code>&amp;lt;</code>/p<code>&amp;gt;
+&amp;lt;</code>/div<code>&amp;gt;</code></pre>
+    </p>
+
+    
+    <h2>Bonus!</h2>
+    <p>If you would also like to use the overall design of this page, here is the relevant code:</p>
+    <details><summary>  Page Styling</summary>
+    <details><summary style="margin-left:5%;">CSS</summary>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-css">body {
+  margin: 0;
+  padding: 0;
+  background-color: #1d001d;
+  margin: auto;
+}
+
+header {
+  margin: 20px 10px;
+  width: 95%rem;
+  border: 2px outset magenta;
+  border-radius: 10px;
+  padding: 0 5px;
+  font-size: .90rem;
+  box-shadow: 2px 2px 8px cyan;
+  overflow: scroll;
+  background-color: transparent;
+  background-image: linear-gradient(to bottom, #2a2139, #34294f, #8f298f80) !important;
+}
+
+main {
+  color: #fcf;
+  padding: 0 15px;
+  margin: auto;
+  font-family: 'Share Tech Mono', monospace;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Orbitron', monospace;
+  font-weight: bold;
+  color: #fff;
+}
+
+h1,
+h2 {
+  margin: 10px 0 10px 0;
+  text-shadow: 0 0 4px blue,
+    1px 1px 12px cyan;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.0rem;
+  text-transform: uppercasee;
+}
+
+h2 {
+  font-size: 1.5rem;
+  border-bottom: 1px solid #72f1b8;
+}
+
+h3 {
+  margin: 20px 0 0 0;
+  font-size: 1.25rem;
+  padding-left: 5%rem;
+  text-shadow: 1px 0px 3px magenta,
+    0px 1px 6px blue;
+}
+
+p {
+  margin: 10px 0 0 0;
+}
+
+
+b {
+  color: orchid;
+}
+
+a {
+  color: aqua;
+  text-decoration: none;
+  transition: color 0.3s;
+  font-weight: bold;
+}
+
+ul {
+  padding-left: 20px;
+  margin: 0;
+}
+
+li {
+  margin: 0;
+}
+
+hr {
+  border-color: #72f1b8;
+  width: 95%;
+}
+
+footer {
+  margin-top: 20px;
+  color: #fcf;
+}
+
+/* Green color for inline code */
+code {
+  color: #72f1b8;
+}
+
+/* Drop-down text */
+summary {
+  font-size: 1.25rem;
+  color: #72f1b8;
+  text-shadow: 1px 0px 3px magenta,
+    0px 1px 6px blue;
+  font-weight: bold;
+}
+
+/* Table */
+table {
+  border: 2px ridge #72f1b8;
+}
+
+th,
+td {
+  text-align: center;
+  border: 1px groove aqua;
+}</code></pre>
+      </div>
+    </p>
+    </details>
+    
+    <details><summary style="margin-left:5%;">HTML</summary>
+    <p>
+    <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-html">&lt;!-- Orbitron font for header --&gt;
+&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;!-- Share Tech Mono font for all other text --&gt;
+&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Share+Tech+Mono&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+
+&lt;footer&gt;
+    &lt;hr&gt;
+    &lt;samp&gt;&lt;sub&gt;&lt;center&gt;
+    &lt;p&gt;Sample footer text&lt;/p&gt;
+    &lt;/center&gt;&lt;/sub&gt;&lt;/samp&gt;
+    &lt;br&gt;
+&lt;/footer&gt;</code></pre>
+      </div>
+    </p>
+    </details>
+    </details>
+
+<details><summary>Fun Fact</summary>
+    <p>I guess this isn't exactly "fun", but I wrote all of this by hand on a half-busted 6 year old phone because I had no electricity and needed something to do.</p>
+</details>
+
+  </main>
+
+
+  <footer>
+    <hr>
+    <samp><sub><center>
+    <p>Synthwave '84 Theme by Robb Owen @Robb0wen for Visual Studio Code. Ported for PrismJS by Marc Backes @themarcba.</p>
+    <p>&copy; 2024 <a href="https://github.com/kielmarj" target="_blank" rel="noopener noreferrer">Jess Kielmar</a>. Licensed under the <a href="https://kielmarj.github.io/MIT-LICENSE/" target="_blank" rel="noopener noreferrer">MIT License</a>.<br>
+    <a href="buymeacoffee.com/kielmarj" target="_blank" rel="noopener noreferrer"><small>Buy me a coffee</small></a></p>
+    </center></sub></samp>
+    <br>
+  </footer>
+
+  
+  <!-- BEGIN PRISM.JS LIBRARIES -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+  <!-- END PRISM.JS LIBRARIES -->
+  <script src="script.js"></script>
+
+
+</body>
+</html>
