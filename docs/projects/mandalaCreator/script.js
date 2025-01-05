@@ -8,8 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let isDrawing = false;
 
   function adjustCanvasSize() {
-    const vwWidth = Math.min(window.innerWidth * 0.9);
-    return vwWidth; // Canvas is 90vw
+    const vwWidth = Math.min(window.innerWidth * 0.85);
+    return Math.min(vwWidth, 800); // Limit max width to 800px
   }
 
   window.setup = function () {
@@ -68,13 +68,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   window.draw = function () {
-    translate(width / 2, height / 2);
     if (isDrawing || mouseIsPressed) {
       const drawColor = getCurrentStrokeColor();
       const [lineStartX, lineStartY, lineEndX, lineEndY] = getLineCoordinates();
 
       buffer.push();
-      buffer.translate(buffer.width / 2, buffer.height / 2); // Use buffer's center
+      buffer.translate(buffer.width / 2, buffer.height / 2); // Center using buffer width and height
       for (let i = 0; i < symmetry; i++) {
         const rotationAngle = angle * i;
         buffer.rotate(rotationAngle);
@@ -134,6 +133,10 @@ document.addEventListener("DOMContentLoaded", () => {
     backgroundColor = e.target.value;
     buffer.background(backgroundColor);
     background(backgroundColor);
+  });
+
+  document.getElementById("save-btn").addEventListener("click", () => {
+    saveCanvas('mandala', 'png');
   });
 
   window.windowResized = function () {
