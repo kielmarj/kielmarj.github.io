@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let buffer;
   const undoStack = [];
   const maxUndoStackSize = 10;
+  let isDrawing = false;
 
   function adjustCanvasSize() {
     return Math.min(window.innerWidth * 0.9);
@@ -46,18 +47,22 @@ document.addEventListener("DOMContentLoaded", () => {
     if (event.target === document.querySelector("canvas")) {
       event.preventDefault();
       const touch = event.touches[0];
-      simulateMouseEvent(touch.clientX, touch.clientY); // Convert touch to mouse coordinates
+      simulateMouseEvent(touch.clientX, touch.clientY);
     }
   }
 
   function simulateMouseEvent(x, y) {
     mouseX = x - canvas.elt.getBoundingClientRect().left;
     mouseY = y - canvas.elt.getBoundingClientRect().top;
-    redraw(); // Trigger p5.js draw
+    redraw();
   }
 
   window.draw = function () {
     if (mouseIsPressed || touches.length > 0) {
+      if (!isDrawing) {
+        saveState(); // Save the buffer state only at the beginning of a stroke
+        isDrawing = true;
+      }
       const drawColor = getCurrentStrokeColor();
       const [lineStartX, lineStartY, lineEndX, lineEndY] = getLineCoordinates();
 
@@ -73,32 +78,34 @@ document.addEventListener("DOMContentLoaded", () => {
         buffer.line(lineStartX, lineStartY, lineEndX, lineEndY);
       }
       buffer.pop();
+    } else {
+      isDrawing = false; // Reset the drawing flag
     }
 
     image(buffer, 0, 0); // Draw buffer onto canvas
   };
 
-  window.mousePressed = function () {
-    saveState(); // Save state for Undo
-  };
-
   function saveState() {
+    console.log("Saving state...");
     if (undoStack.length >= maxUndoStackSize) {
       undoStack.shift(); // Limit stack size
     }
     const state = createGraphics(buffer.width, buffer.height);
     state.image(buffer, 0, 0);
-    undoStack.push(state); // Save the current buffer state
+    undoStack.push(state); // Save current buffer state
+    console.log(`Undo stack size: ${undoStack.length}`);
   }
 
   function undoLastStroke() {
     if (undoStack.length > 0) {
-      const lastState = undoStack.pop(); // Get the previous state
-      buffer.clear(); // Clear the buffer
-      buffer.image(lastState, 0, 0); // Restore the buffer
-      image(buffer, 0, 0); // Update canvas
+      console.log("Undoing last stroke...");
+      const lastState = undoStack.pop();
+      buffer.clear();
+      buffer.image(lastState, 0, 0);
+      image(buffer, 0, 0);
+      console.log(`Undo stack size after undo: ${undoStack.length}`);
     } else {
-      console.log("No more undo steps available.");
+      console.log("Undo stack is empty.");
     }
   }
 
@@ -123,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   document.getElementById("reset-btn").addEventListener("click", () => {
-    buffer.background(backgroundColor); // Clear the buffer
+    buffer.background(backgroundColor);
     background(backgroundColor);
     undoStack.length = 0; // Clear the undo stack
   });
@@ -141,7 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("background-color-picker").addEventListener("input", (e) => {
     backgroundColor = e.target.value;
-    buffer.background(backgroundColor); // Update buffer
+    buffer.background(backgroundColor);
     background(backgroundColor);
   });
 
@@ -149,7 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const size = adjustCanvasSize();
     resizeCanvas(size, size);
     const newBuffer = createGraphics(size, size);
-    newBuffer.image(buffer, 0, 0, size, size); // Copy old buffer
+    newBuffer.image(buffer, 0, 0, size, size);
     buffer = newBuffer;
   };
 });
