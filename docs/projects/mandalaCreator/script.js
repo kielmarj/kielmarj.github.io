@@ -25,19 +25,19 @@ document.addEventListener("DOMContentLoaded", () => {
     buffer.background(backgroundColor);
     background(backgroundColor);
 
-    // Block scrolling only while interacting with the canvas
-    canvas.elt.addEventListener("touchmove", preventScrollDuringCanvasInteraction, { passive: false });
-    canvas.elt.addEventListener("touchstart", preventScrollDuringCanvasInteraction, { passive: false });
+    // Allow touch drawing while blocking scrolling only on the canvas
+    canvas.elt.addEventListener("touchstart", (e) => handleCanvasTouch(e), { passive: false });
+    canvas.elt.addEventListener("touchmove", (e) => handleCanvasTouch(e), { passive: false });
   };
 
-  function preventScrollDuringCanvasInteraction(event) {
+  function handleCanvasTouch(event) {
     if (event.target === document.querySelector("canvas")) {
-      event.preventDefault(); // Prevent scrolling on canvas interaction
+      event.preventDefault(); // Prevent scrolling
     }
   }
 
   window.draw = function () {
-    // Draw using either mouse or touch
+    // Draw if mouse or touch is active
     if (mouseIsPressed || touches.length > 0) {
       const drawColor = getCurrentStrokeColor();
       const [lineStartX, lineStartY, lineEndX, lineEndY] = getLineCoordinates();
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
       buffer.pop();
     }
 
-    image(buffer, 0, 0); // Draw buffer onto canvas
+    image(buffer, 0, 0); // Draw the buffer onto the main canvas
   };
 
   function getLineCoordinates() {
@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const size = adjustCanvasSize();
     resizeCanvas(size, size);
     let newBuffer = createGraphics(size, size);
-    newBuffer.image(buffer, 0, 0, size, size); // Copy old buffer to new one
+    newBuffer.image(buffer, 0, 0, size, size); // Copy old buffer to the new one
     buffer = newBuffer;
   };
 
