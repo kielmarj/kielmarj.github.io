@@ -106,19 +106,21 @@ a:hover {
 
 /* Background box of eraser slider */
 .switch {
-	background-color: #6a5acd;
-	border-radius: 1rem;
-	border: 0.025rem groove #4b296f;
-	cursor: pointer;
-	display: inline-block;
-	height: 1.5rem;
-	/* Adjusted height */
-	max-width: 80px;
-	max-height: 40px;
-	position: relative;
-	transition: background-color 0.4s;
-	width: 3.5rem;
-	box-shadow: inset 0 0 0.75rem #330057, 0.25rem 0.25rem 0.75rem #2c0030;
+  background-color: #6a5acd;
+  border-radius: 1rem;
+  border: 0.025rem groove #4b296f;
+  cursor: pointer;
+  display: inline-block;
+  height: 2rem;
+  max-width: 3.5rem;
+  position: relative;
+  transition: background-color 0.4s, box-shadow 0.3s;
+  width: 3.5rem;
+  box-shadow: inset 0 0 0.75rem #330057, 0.25rem 0.25rem 0.75rem #2c0030;
+}
+.slider:before {
+  height: 1.5rem; /* Adjust slider thumb height */
+  width: 1.5rem; /* Adjust slider thumb width */
 }
 
 /* Eraser slider */
