@@ -21,8 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		canvas.parent("sketch-container");
 		angleMode(DEGREES);
 		background(backgroundColor);
-		canvas.elt.addEventListener("touchstart", (e) => e.preventDefault(), { passive: false });
-		canvas.elt.addEventListener("touchmove", (e) => e.preventDefault(), { passive: false });
 		canvasBackup = get(); // Backup initial canvas state
 	};
 
@@ -56,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
 					line(lineStartX, lineStartY, lineEndX, lineEndY);
 					pop();
 				}
+				canvasBackup = get(); // Update backup after drawing
 			}
 		}
 	};
@@ -107,6 +106,12 @@ document.addEventListener("DOMContentLoaded", () => {
 			image(canvasBackup, 0, 0, size, size); // Restore canvas state
 		}
 	};
+
+	window.addEventListener("scroll", () => {
+		if (canvasBackup) {
+			image(canvasBackup, 0, 0); // Restore canvas on scroll
+		}
+	});
 
 	function hslToRgb(h, s, l) {
 		let r, g, b;
