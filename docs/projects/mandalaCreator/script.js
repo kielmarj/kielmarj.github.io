@@ -137,6 +137,12 @@ document.addEventListener("DOMContentLoaded", () => {
     b = Math.round((b + m) * 255);
     return [r, g, b];
   }
+
+window.addEventListener('scroll', function() {
+  redrawCanvas();
 });
+
+});
+
 
 
