@@ -141,7 +141,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	});
 
-
 	document.getElementById("background-color-picker").addEventListener("input", (e) => {
 		backgroundColor = e.target.value;
 		buffer.background(backgroundColor);
