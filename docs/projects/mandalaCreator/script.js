@@ -68,6 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   window.draw = function () {
+    translate(width / 2, height / 2);
     if (isDrawing || mouseIsPressed) {
       const drawColor = getCurrentStrokeColor();
       const [lineStartX, lineStartY, lineEndX, lineEndY] = getLineCoordinates();
