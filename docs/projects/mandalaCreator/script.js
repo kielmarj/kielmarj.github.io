@@ -110,17 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   window.mousePressed = function () {
-    const colorMode = document.querySelector('input[name="color-mode"]:checked').value;
-    if (colorMode === "random") {
-      const hue = random(0, 360);
-      const saturation = 100;
-      const lightness = 60;
-      const rgb = hslToRgb(hue, saturation / 100, lightness / 100);
-      currentStrokeColor = color(rgb[0], rgb[1], rgb[2]);
-    } else {
-      const hex = document.getElementById("color-picker").value;
-      currentStrokeColor = color(hex);
-    }
+    updateStrokeColor();
   };
   
   document.getElementById("reset-btn").addEventListener("click", () => {
@@ -136,6 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
     input.addEventListener("change", () => {
       const colorPicker = document.getElementById("color-picker");
       colorPicker.style.display = input.value === "select" ? "inline" : "none";
+      updateStrokeColor();
     });
   });
 
@@ -145,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
     background(backgroundColor);
   });
 
-    document.getElementById("save-btn").addEventListener("click", () => {
+  document.getElementById("save-btn").addEventListener("click", () => {
     saveCanvas('mandala', 'png');
   });
 
@@ -204,3 +195,4 @@ document.addEventListener("DOMContentLoaded", () => {
     return [Math.round((r + m) * 255), Math.round((g + m) * 255), Math.round((b + m) * 255)];
   }
 });
+
