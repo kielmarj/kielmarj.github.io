@@ -46,7 +46,12 @@ footer {
 }
 
 a {
-  color: cyan;
+  color: aqua;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 #sketch-container {
@@ -156,4 +161,5 @@ input:checked + .slider {
 input:checked + .slider:before {
   transform: translateX(25px);
 }
+
 
