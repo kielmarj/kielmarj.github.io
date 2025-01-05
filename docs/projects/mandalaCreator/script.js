@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
     background(backgroundColor);
   });
 
-  document.getElementById("save-btn").addEventListener("click", () => {
+    document.getElementById("save-btn").addEventListener("click", () => {
     saveCanvas('mandala', 'png');
   });
 
