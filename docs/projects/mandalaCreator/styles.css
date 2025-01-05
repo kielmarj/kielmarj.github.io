@@ -62,6 +62,7 @@ a:hover {
 	border-radius: 8px;
 	overflow: hidden;
 	margin: 1%;
+	aspect-ratio: 1;
 }
 
 #controls-container {
