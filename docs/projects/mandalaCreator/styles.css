@@ -102,9 +102,9 @@ a:hover {
   border: 0.025rem groove #4b296f;
   cursor: pointer;
   display: inline-block;
-  height: 6rem;
-  max-height: 40px;
+  height: 1.5rem; /* Adjusted height */
   max-width: 80px;
+  max-height: 40px;
   position: relative;
   transition: background-color 0.4s;
   width: 3.5rem;
