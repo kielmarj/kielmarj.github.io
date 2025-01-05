@@ -17,13 +17,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	window.setup = function () {
 		const size = adjustCanvasSize();
-		createCanvas(size, size).parent("sketch-container");
+		const canvas = createCanvas(size, size);
+		canvas.parent("sketch-container");
 		angleMode(DEGREES);
 		buffer = createGraphics(size, size);
 		buffer.angleMode(DEGREES);
 		buffer.background(backgroundColor);
 		background(backgroundColor);
+
+		// Prevent scrolling by stopping touch events
+		canvas.elt.addEventListener("touchstart", handleTouch, { passive: false });
+		canvas.elt.addEventListener("touchmove", handleTouch, { passive: false });
+		canvas.elt.addEventListener("touchend", handleTouch, { passive: false });
 	};
+
+	function handleTouch(event) {
+		event.preventDefault();
+		event.stopPropagation();
+	}
 
 	window.draw = function () {
 		if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
