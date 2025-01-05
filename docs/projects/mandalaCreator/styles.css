@@ -3,7 +3,15 @@
  * https://github.com/kielmarj
  **/
 
+<<<<<<< Updated upstream
 body {
+=======
+ body {
+  background-color: #2e004b;
+  color: #b0c4de;
+  font-family: "Quicksand", sans-serif;
+  height: 100vh;
+>>>>>>> Stashed changes
   margin: 0;
   padding: 0;
   background-color: indigo;
@@ -46,12 +54,33 @@ footer {
 }
 
 a {
+<<<<<<< Updated upstream
   color: deepskyblue;
 }
 
 #sketch-container {
   border: 0.05rem groove mediumspringgreen;
   background-color: midnightblue;
+=======
+  color: #00ffff;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #00fa9a;
+  text-decoration: underline;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+#sketch-container {
+  aspect-ratio: 1;
+  background-color: #191970;
+  border-radius: 1rem;
+  border: 0.05rem groove #00fa9a;
+  box-shadow: 0.2rem 0.2rem 0.9rem #191970;
+  height: auto;
+  margin: 1% auto;
+>>>>>>> Stashed changes
   max-width: 800px;
   aspect-ratio: 1;
   border-radius: 8px;
@@ -60,10 +89,19 @@ a {
 }
 
 #controls-container {
+<<<<<<< Updated upstream
+=======
+  align-items: center;
+  background-color: #2e004b;
+  border-radius: 1rem;
+  box-shadow: 0.2rem 0.2rem 0.9rem #b0c4de;
+  box-sizing: border-box;
+>>>>>>> Stashed changes
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+<<<<<<< Updated upstream
   width: 100%;
   max-width: 800px;
   gap: 1rem;
@@ -157,3 +195,146 @@ input:checked + .slider:before {
   transform: translateX(25px);
 }
 
+=======
+  margin: 1rem auto;
+  padding: 1rem;
+}
+
+#controls-container > div {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 600px;
+  width: 85%;
+}
+
+button {
+  background: linear-gradient(45deg, #4b0082, #00fa9a, #00ffff);
+  background-size: 200% 200%;
+  border-radius: 1rem;
+  border: 0.15rem solid #6a5acd;
+  color: indigo;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+button:hover {
+  animation: gradient-animation 3s infinite;
+  border-color: #6a5acd;
+  transform: translateY(-0.25rem);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+  animation: gradient-animation 3s infinite;
+  border-color: #4b0082;
+  transform: translateY(0.2rem);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+select,
+input[type="range"],
+input[type="color"] {
+  border-radius: 4px;
+  border: none;
+  font-size: 1rem;
+  margin: 0.5rem auto;
+}
+
+input[type="range"] {
+  width: 85%;
+}
+
+input[type="color"] {
+  width: 5rem;
+  height: 2rem;
+  border-radius: 0.35rem;
+}
+
+legend {
+  color: mediumspringgreen;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.switch {
+  display: inline-block;
+  height: 25px;
+  max-width: 80px;
+  position: relative;
+  width: 3rem;
+}
+
+.switch input {
+  height: 0;
+  opacity: 0;
+  width: 0;
+}
+
+.slider {
+  background-color: gray;
+  border-radius: 34px;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: background-color 0.4s;
+}
+
+.slider:before {
+  background-color: white;
+  border-radius: 50%;
+  bottom: 4px;
+  content: "";
+  height: 15px;
+  left: 4px;
+  position: absolute;
+  transition: transform 0.4s;
+  width: 18px;
+}
+
+input:checked + .slider {
+  background-color: mediumspringgreen;
+}
+
+input:checked + .slider:before {
+  transform: translateX(25px);
+}
+
+@media (min-width: 600px) {
+  #controls-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  #controls-container > div {
+    flex: 1 1 45%;
+    max-width: 45%;
+  }
+
+  button {
+    width: auto;
+  }
+}
+>>>>>>> Stashed changes
