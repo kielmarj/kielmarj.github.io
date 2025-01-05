@@ -2,50 +2,44 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta name="robots" content="index,follow" />
-	<meta name="keywords" content="blog,developer,webdev,opensource,programming,software" />
-	<title>{{ page.title | default: site.title }}</title>
-	<!-- Normalize CSS -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
-	<!-- TODO RSS
-	<link rel="alternate" type="application/rss+xml" title="Blog Posts" href="">
-	-->
-	<!-- TODO Icon
-	<link rel="shortcut icon" href=".ico" />
-	-->
-	<!-- Default CSS (Jekyll) -->
-	<link rel="stylesheet" href="/assets/default.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index,follow" />
+    <meta name="keywords" content="blog,developer,webdev,opensource,programming,software" />
+    <title>{{ page.title | default: site.title }}</title>
+    <!-- Normalize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+    <!-- Default CSS (Jekyll) -->
+    <link rel="stylesheet" href="/assets/default.css" />
 </head>
 
 <body>
-	<header>
-		<a href="https://kielmarj.github.io">kielmarj.github.io</a>
-		<nav>
-			<ul class="header-nav">
-				<li><a href="#">About</a></li>
-				<li><a href="/projects/">Projects</a></li>
-				<li><a href="/blog/">Blog</a></li>
-				<li><a href="/MIT-LICENSE/" target="_blank">License</a></li>
-			</ul>
-		</nav>
-	</header>
-	<main>
-		<h1>{{ page.title }}</h1>
-		{{ content | default: "..." }}
-	</main>
-	<footer>
-		<p>
-			&copy; <span id="currentYear"></span> Jess Kielmar |
-			<a href="https://github.com/kielmarj" target="_blank">GitHub</a>
-		</p>
-		<p>
-			Licensed under the
-			<a href="/MIT-LICENSE/" target="_blank">MIT License</a>
-		</p>
-	</footer>
-	<script src="/assets/default.js"></script>
+    <header>
+        <a href="https://kielmarj.github.io">kielmarj.github.io</a>
+        <nav>
+            <ul class="header-nav">
+                <li><a href="#">About</a></li>
+                <li><a href="/projects/">Projects</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/MIT-LICENSE/" target="_blank">License</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>{{ page.title }}</h1>
+        {{ content | default: "..." }}
+    </main>
+    <footer>
+        <p>
+            &copy; <span id="currentYear"></span> Jess Kielmar |
+            <a href="https://github.com/kielmarj" target="_blank">GitHub</a>
+        </p>
+        <p>
+            Licensed under the
+            <a href="/MIT-LICENSE/" target="_blank">MIT License</a>
+        </p>
+    </footer>
+    <script src="/assets/default.js"></script>
 </body>
 
 </html>
