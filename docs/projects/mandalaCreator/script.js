@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const canvas = document.getElementById('yourCanvasId');
 	const ctx = canvas.getContext('2d');
 
-	// Create an offscreen canvas for persistent drawing
+	// Create an offscreen canvas for persistent drawing. This is to prevent the canvas from being erased if it is scrolled out of view.
 	const offscreenCanvas = document.createElement('canvas');
 	const offscreenCtx = offscreenCanvas.getContext('2d');
 
