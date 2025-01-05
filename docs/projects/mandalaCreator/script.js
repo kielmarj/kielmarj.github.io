@@ -10,6 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let strokeWeightValue = 1.5;
   let backgroundColor = "midnightblue";
   let buffer;
+  const undoStack = [];
+  const maxUndoStackSize = 10;
 
   function adjustCanvasSize() {
     return Math.min(window.innerWidth * 0.9);
@@ -26,8 +28,11 @@ document.addEventListener("DOMContentLoaded", () => {
     background(backgroundColor);
 
     // Add touch handlers for the canvas
-    canvas.elt.addEventListener("touchstart", handleTouchStart, { passive: false });
-    canvas.elt.addEventListener("touchmove", handleTouchMove, { passive: false });
+    canvas.elt.addEventListener("touchstart", (e) => handleTouchStart(e), { passive: false });
+    canvas.elt.addEventListener("touchmove", (e) => handleTouchMove(e), { passive: false });
+
+    // Add Undo button functionality
+    document.getElementById("undo-btn").addEventListener("click", undoLastStroke);
   };
 
   function handleTouchStart(event) {
@@ -54,6 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.draw = function () {
     if (mouseIsPressed || touches.length > 0) {
+      saveState(); // Save current state before modifying the buffer
       const drawColor = getCurrentStrokeColor();
       const [lineStartX, lineStartY, lineEndX, lineEndY] = getLineCoordinates();
 
@@ -73,6 +79,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     image(buffer, 0, 0); // Draw the buffer onto the main canvas
   };
+
+  function saveState() {
+    if (undoStack.length >= maxUndoStackSize) {
+      undoStack.shift(); // Remove the oldest state if stack exceeds the limit
+    }
+    const state = createGraphics(buffer.width, buffer.height);
+    state.image(buffer, 0, 0);
+    undoStack.push(state); // Save the current buffer state
+  }
+
+  function undoLastStroke() {
+    if (undoStack.length > 0) {
+      const lastState = undoStack.pop(); // Get the last saved state
+      buffer.image(lastState, 0, 0); // Restore the buffer to the last state
+      image(buffer, 0, 0); // Update the canvas
+    }
+  }
 
   function getLineCoordinates() {
     const lineStartX = mouseX - width / 2;
@@ -101,6 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("reset-btn").addEventListener("click", () => {
     buffer.background(backgroundColor); // Clear the buffer
     background(backgroundColor);
+    undoStack.length = 0; // Clear the undo stack
   });
 
   document.getElementById("stroke-weight-slider").addEventListener("input", (e) => {
@@ -124,7 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const size = adjustCanvasSize();
     resizeCanvas(size, size);
     let newBuffer = createGraphics(size, size);
-    newBuffer.image(buffer, 0, 0, size, size); // Copy old buffer to new one
+    newBuffer.image(buffer, 0, 0, size, size); // Copy old buffer to the new one
     buffer = newBuffer;
   };
 
@@ -175,3 +199,4 @@ document.addEventListener("DOMContentLoaded", () => {
     return [Math.round((r + m) * 255), Math.round((g + m) * 255), Math.round((b + m) * 255)];
   }
 });
+
