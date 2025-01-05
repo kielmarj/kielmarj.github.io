@@ -61,7 +61,9 @@ a:hover {
 	max-width: 800px;
 	border-radius: 8px;
 	overflow: hidden;
-	margin: 1%;
+	margin: 1% auto;
+	width: 90vw;
+	height: auto;
 	aspect-ratio: 1;
 }
 
