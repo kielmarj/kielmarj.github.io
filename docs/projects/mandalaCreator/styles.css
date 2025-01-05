@@ -102,10 +102,9 @@ input[type="range"],
 input[type="color"] {
 	padding: 0.25rem;
 	font-size: 1rem;
-	border: 1px solid mediumspringgreen;
 	border-radius: 4px;
 	background-color: white;
-	width: 80%;
+	width: 85%;
 }
 
 input[type="color"] {
