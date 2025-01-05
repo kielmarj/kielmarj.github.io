@@ -25,19 +25,34 @@ document.addEventListener("DOMContentLoaded", () => {
     buffer.background(backgroundColor);
     background(backgroundColor);
 
-    // Allow touch drawing while blocking scrolling only on the canvas
-    canvas.elt.addEventListener("touchstart", (e) => handleCanvasTouch(e), { passive: false });
-    canvas.elt.addEventListener("touchmove", (e) => handleCanvasTouch(e), { passive: false });
+    // Add touch handlers for the canvas
+    canvas.elt.addEventListener("touchstart", handleTouchStart, { passive: false });
+    canvas.elt.addEventListener("touchmove", handleTouchMove, { passive: false });
   };
 
-  function handleCanvasTouch(event) {
+  function handleTouchStart(event) {
     if (event.target === document.querySelector("canvas")) {
-      event.preventDefault(); // Prevent scrolling
+      event.preventDefault(); // Stop page scroll when interacting with the canvas
     }
   }
 
+  function handleTouchMove(event) {
+    if (event.target === document.querySelector("canvas")) {
+      event.preventDefault(); // Stop page scroll during drawing interactions
+      const touch = event.touches[0];
+      simulateMouseEvent(touch.clientX, touch.clientY); // Convert touch input to mouse for drawing
+    }
+  }
+
+  function simulateMouseEvent(x, y) {
+    mouseX = x - canvas.elt.getBoundingClientRect().left;
+    mouseY = y - canvas.elt.getBoundingClientRect().top;
+    pmouseX = mouseX;
+    pmouseY = mouseY;
+    redraw(); // Trigger p5.js drawing
+  }
+
   window.draw = function () {
-    // Draw if mouse or touch is active
     if (mouseIsPressed || touches.length > 0) {
       const drawColor = getCurrentStrokeColor();
       const [lineStartX, lineStartY, lineEndX, lineEndY] = getLineCoordinates();
@@ -109,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const size = adjustCanvasSize();
     resizeCanvas(size, size);
     let newBuffer = createGraphics(size, size);
-    newBuffer.image(buffer, 0, 0, size, size); // Copy old buffer to the new one
+    newBuffer.image(buffer, 0, 0, size, size); // Copy old buffer to new one
     buffer = newBuffer;
   };
 
