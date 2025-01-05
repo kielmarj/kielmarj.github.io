@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function startDrawing(event) {
     if (event.target === document.querySelector("canvas")) {
-      event.preventDefault(); // Prevent scrolling during interaction
+      event.preventDefault();
       isDrawing = true;
       if (event.touches) {
         simulateMouseEvent(event.touches[0].clientX, event.touches[0].clientY);
@@ -47,19 +47,22 @@ document.addEventListener("DOMContentLoaded", () => {
       if (event.touches) {
         simulateMouseEvent(event.touches[0].clientX, event.touches[0].clientY);
       }
-      redraw(); // Trigger p5.js drawing
-      event.preventDefault(); // Prevent scrolling while drawing
+      redraw();
+      event.preventDefault();
     }
   }
 
   function stopDrawing() {
-    isDrawing = false; // Stop drawing
+    isDrawing = false;
   }
 
   function simulateMouseEvent(x, y) {
     const canvasRect = canvas.elt.getBoundingClientRect(); // Get canvas position and size
-    mouseX = x - canvasRect.left; // Adjust X relative to canvas
-    mouseY = y - canvasRect.top; // Adjust Y relative to canvas
+    const scaleX = canvas.width / canvasRect.width; // Account for CSS scaling
+    const scaleY = canvas.height / canvasRect.height;
+
+    mouseX = (x - canvasRect.left) * scaleX; // Adjust X relative to scaled canvas
+    mouseY = (y - canvasRect.top) * scaleY; // Adjust Y relative to scaled canvas
     pmouseX = mouseX;
     pmouseY = mouseY;
   }
@@ -83,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
       buffer.pop();
     }
 
-    image(buffer, 0, 0, width, height); // Scale buffer to canvas size
+    image(buffer, 0, 0, width, height); // Render buffer onto scaled canvas
   };
 
   function getLineCoordinates() {
@@ -111,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   document.getElementById("reset-btn").addEventListener("click", () => {
-    buffer.background(backgroundColor); // Clear the buffer
+    buffer.background(backgroundColor);
     background(backgroundColor);
   });
 
@@ -128,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("background-color-picker").addEventListener("input", (e) => {
     backgroundColor = e.target.value;
-    buffer.background(backgroundColor); // Update buffer background
+    buffer.background(backgroundColor);
     background(backgroundColor);
   });
 
