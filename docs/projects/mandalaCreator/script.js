@@ -10,8 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let strokeWeightValue = 1.5;
   let backgroundColor = "midnightblue";
   let buffer;
-  const undoStack = [];
-  const maxUndoStackSize = 10;
+  let isDrawing = false; // Track whether the user is drawing
 
   function adjustCanvasSize() {
     return Math.min(window.innerWidth * 0.9);
@@ -27,26 +26,38 @@ document.addEventListener("DOMContentLoaded", () => {
     buffer.background(backgroundColor);
     background(backgroundColor);
 
-    // Add touch handlers for the canvas
-    canvas.elt.addEventListener("touchstart", (e) => handleTouchStart(e), { passive: false });
-    canvas.elt.addEventListener("touchmove", (e) => handleTouchMove(e), { passive: false });
+    // Add mouse and touch handlers for the canvas
+    canvas.elt.addEventListener("mousedown", startDrawing);
+    canvas.elt.addEventListener("mousemove", drawOnCanvas);
+    canvas.elt.addEventListener("mouseup", stopDrawing);
 
-    // Add Undo button functionality
-    document.getElementById("undo-btn").addEventListener("click", undoLastStroke);
+    canvas.elt.addEventListener("touchstart", startDrawing, { passive: false });
+    canvas.elt.addEventListener("touchmove", drawOnCanvas, { passive: false });
+    canvas.elt.addEventListener("touchend", stopDrawing);
   };
 
-  function handleTouchStart(event) {
+  function startDrawing(event) {
     if (event.target === document.querySelector("canvas")) {
-      event.preventDefault(); // Stop page scroll when interacting with the canvas
+      event.preventDefault(); // Prevent scrolling during interaction
+      isDrawing = true;
+      if (event.touches) {
+        simulateMouseEvent(event.touches[0].clientX, event.touches[0].clientY);
+      }
     }
   }
 
-  function handleTouchMove(event) {
-    if (event.target === document.querySelector("canvas")) {
-      event.preventDefault(); // Stop page scroll during drawing interactions
-      const touch = event.touches[0];
-      simulateMouseEvent(touch.clientX, touch.clientY); // Convert touch input to mouse for drawing
+  function drawOnCanvas(event) {
+    if (isDrawing) {
+      if (event.touches) {
+        simulateMouseEvent(event.touches[0].clientX, event.touches[0].clientY);
+      }
+      redraw(); // Trigger p5.js drawing
+      event.preventDefault(); // Prevent scrolling while drawing
     }
+  }
+
+  function stopDrawing() {
+    isDrawing = false; // Stop drawing
   }
 
   function simulateMouseEvent(x, y) {
@@ -54,12 +65,10 @@ document.addEventListener("DOMContentLoaded", () => {
     mouseY = y - canvas.elt.getBoundingClientRect().top;
     pmouseX = mouseX;
     pmouseY = mouseY;
-    redraw(); // Trigger p5.js drawing
   }
 
   window.draw = function () {
-    if (mouseIsPressed || touches.length > 0) {
-      saveState(); // Save current state before modifying the buffer
+    if (isDrawing || mouseIsPressed) {
       const drawColor = getCurrentStrokeColor();
       const [lineStartX, lineStartY, lineEndX, lineEndY] = getLineCoordinates();
 
@@ -79,23 +88,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     image(buffer, 0, 0); // Draw the buffer onto the main canvas
   };
-
-  function saveState() {
-    if (undoStack.length >= maxUndoStackSize) {
-      undoStack.shift(); // Remove the oldest state if stack exceeds the limit
-    }
-    const state = createGraphics(buffer.width, buffer.height);
-    state.image(buffer, 0, 0);
-    undoStack.push(state); // Save the current buffer state
-  }
-
-  function undoLastStroke() {
-    if (undoStack.length > 0) {
-      const lastState = undoStack.pop(); // Get the last saved state
-      buffer.image(lastState, 0, 0); // Restore the buffer to the last state
-      image(buffer, 0, 0); // Update the canvas
-    }
-  }
 
   function getLineCoordinates() {
     const lineStartX = mouseX - width / 2;
@@ -124,7 +116,6 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("reset-btn").addEventListener("click", () => {
     buffer.background(backgroundColor); // Clear the buffer
     background(backgroundColor);
-    undoStack.length = 0; // Clear the undo stack
   });
 
   document.getElementById("stroke-weight-slider").addEventListener("input", (e) => {
