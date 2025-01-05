@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.mousePressed = function () {
     updateStrokeColor();
   };
-  
+
   document.getElementById("reset-btn").addEventListener("click", () => {
     buffer.background(backgroundColor);
     background(backgroundColor);
@@ -128,9 +128,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.querySelectorAll('input[name="color-mode"]').forEach((input) => {
-    input.addEventListener("change", () => {
+    input.addEventListener("change", (e) => {
       const colorPicker = document.getElementById("color-picker");
-      colorPicker.style.display = input.value === "select" ? "inline" : "none";
+      colorPicker.style.display = e.target.value === "select" ? "inline" : "none";
       updateStrokeColor();
     });
   });
@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.getElementById("save-btn").addEventListener("click", () => {
-    saveCanvas('mandala', 'png');
+    saveCanvas("mandala", "png");
   });
 
   window.windowResized = function () {
@@ -200,4 +200,3 @@ document.addEventListener("DOMContentLoaded", () => {
     return [Math.round((r + m) * 255), Math.round((g + m) * 255), Math.round((b + m) * 255)];
   }
 });
-
