@@ -1,3 +1,8 @@
+/**
+ * (c) 2025 Jess Kielmar, MIT License
+ * https://github.com/kielmarj
+ **/
+
 document.addEventListener("DOMContentLoaded", () => {
   let symmetry = 6;
   let angle = 360 / symmetry;
