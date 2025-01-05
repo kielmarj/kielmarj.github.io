@@ -138,10 +138,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return [r, g, b];
   }
 
-window.addEventListener('scroll', function() {
-  redrawCanvas();
-});
-
 });
 
 
