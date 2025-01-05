@@ -3,212 +3,211 @@
  * https://github.com/kielmarj
  **/
 
-<<<<<<< Updated upstream
-body {
-=======
+/*********************
+ ****** GENERAL ******
+ *********************/
  body {
   background-color: #2e004b;
   color: #b0c4de;
   font-family: "Quicksand", sans-serif;
   height: 100vh;
->>>>>>> Stashed changes
   margin: 0;
   padding: 0;
-  background-color: indigo;
-  color: plum;
-  font-family: "Quicksand", sans-serif;
   text-align: center;
 }
-
 header {
   margin: 0 auto;
   padding: 0;
   width: 95%;
 }
-
 h1 {
+  color: mediumspringgreen;
   font-size: 3rem;
   margin: 1% auto;
-  color: mediumspringgreen;
 }
-
 p {
   margin: 0 auto;
 }
-
 main {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 95%;
-  padding: 0;
-  margin: 0 auto;
   font-size: 1.25rem;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 0;
+  width: 95%;
 }
-
 footer {
   font-size: 1rem;
-  margin: 1rem auto;
+  margin: 2% auto;
+  padding: 1%;
   width: 95%;
 }
-
 a {
-<<<<<<< Updated upstream
-  color: deepskyblue;
-}
-
-#sketch-container {
-  border: 0.05rem groove mediumspringgreen;
-  background-color: midnightblue;
-=======
   color: #00ffff;
   text-decoration: none;
 }
-
 a:hover {
   color: #00fa9a;
   text-decoration: underline;
   transition: color 0.3s ease, text-decoration 0.3s ease;
 }
 
+/*****************************
+ ****** CANVAS CONTAINER *****
+ *****************************/
 #sketch-container {
   aspect-ratio: 1;
   background-color: #191970;
   border-radius: 1rem;
   border: 0.05rem groove #00fa9a;
-  box-shadow: 0.2rem 0.2rem 0.9rem #191970;
+  box-shadow: 0.2rem 0.2rem 0.75rem #6a5acd;
   height: auto;
   margin: 1% auto;
->>>>>>> Stashed changes
   max-width: 800px;
-  aspect-ratio: 1;
-  border-radius: 8px;
   overflow: hidden;
-  margin: 1%;
+  width: 85vw;
 }
 
+/**********************
+ ****** CONTROLS  *****
+ **********************/
 #controls-container {
-<<<<<<< Updated upstream
-=======
   align-items: center;
   background-color: #2e004b;
   border-radius: 1rem;
-  box-shadow: 0.2rem 0.2rem 0.9rem #b0c4de;
+  box-shadow: 0.2rem 0.2rem 0.75rem #6a5acd;
   box-sizing: border-box;
->>>>>>> Stashed changes
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-<<<<<<< Updated upstream
-  width: 100%;
-  max-width: 800px;
   gap: 1rem;
-  margin-top: 1rem;
-}
-
-#controls-container > div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;:;
-  width: 100%;
-}
-
-button {
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 4px;
-  background-color: mediumspringgreen;
-  font-size: 1rem;
-  cursor: pointer;
+  justify-content: center;
   margin: 1rem auto;
+  max-width: 600px;
+  padding: 1rem;
+  width: 95%;
 }
-
-button:hover {
-  background-color: mediumspringgreen;
-}
-
-select, input[type="range"], input[type="color"] {
-  padding: 0.25rem;
-  font-size: 1rem;
-  border: 1px solid mediumspringgreen;
-  border-radius: 4px;
-  background-color: white;
-  width: 80%;
-}
-
-input[type="color"] {
-  width: 50px;
-  height: 30px;
-}
-
-legend {
-  font-size: 1.5rem;
-  color: mediumspringgreen;
-  font-weight: 700;
-}
-
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 25px;
-}
-
+/* ERASER */
+/* Hide default HTML checkbox where the switch is */
 .switch input {
+  height: 0;
   opacity: 0;
   width: 0;
-  height: 0;
 }
-
-.slider {
-  position: absolute;
+/* Background box of eraser slider */
+.switch {
+  background-color: #6a5acd;
+  border-radius: 1rem;
+  border: 0.025rem groove #4b296f;
   cursor: pointer;
+  display: inline-block;
+  height: 6rem;
+  max-height: 40px;
+  max-width: 80px;
+  position: relative;
+  transition: background-color 0.4s;
+  width: 3.5rem;
+  box-shadow: inset 0 0 0.75rem #330057, 0.25rem 0.25rem 0.75rem #2c0030;
+}
+/* Eraser slider */
+.slider {
+  border-radius: 50%;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
-  background-color: gray;
-  border-radius: 34px;
-  transition: background-color 0.4s;
+  bottom: 0.1rem;
+  cursor: pointer;
+  transition: 0.4s;
 }
-
 .slider:before {
-  position: absolute;
-  content: "";
-  height: 18px;
-  width: 18px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
+  background-color: #997dff;
+  border: 0.025rem solid #4b296f;
+  box-shadow: inset 0 0 0.25rem #4b0082;
   border-radius: 50%;
+  bottom: 0.1em;
+  content: "";
+  height: 1rem;
+  max-height: 40px;
+  left: 0.25rem;
+  position: absolute;
   transition: transform 0.4s;
+  width: 1rem;
+  max-width: 80px;
 }
-
 input:checked + .slider {
   background-color: mediumspringgreen;
+  box-shadow: inset 0 0 0.75rem #330057, 0.1rem 0.1rem 0.75rem #997dff;
+  border-radius: 1rem;
+  width: 3.5rem;
+  max-width: 80px;
+  height: 6rem;
+  max-height: 40px;
 }
-
 input:checked + .slider:before {
-  transform: translateX(25px);
+  transform: translateX(1.75rem);
+  max-transform: translateX(56px);
+  bottom: 0.25rem;
+}
+/* Legend (labels) */
+legend {
+  color: mediumspringgreen;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+/* Size Range Slider */
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 10rem;
+  max-width: 500px;
+  height: 0.35rem;
+  border-radius: 8px;
+  background: #4b0082;
+}
+input[type="range"]:hover {
+  background: mediumspringgreen;
+  box-shadow: inset 0 0 0.15rem #330057, 0.1rem 0.1rem 0.75rem #997dff;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: #997dff;
+  border: 0.025rem solid #4b296f;
+  box-shadow: inset 0 0 0.25rem #4b0082;
+}
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #00fa9a;
+  cursor: pointer;
+}
+/* Color Mode */
+fieldset {
+  border: 0.1rem solid #6a5acd;
+  border-radius: .8rem;
+  margin: 0.5rem auto;
+  padding: 0.5rem;
+  width: 95%;
+}
+/* Color Picker */
+input[type="color"] {
+  border: none;
+  font-size: 1rem;
+  margin: 0.5rem auto;
+  width: 5rem;
+  height: 2rem;
+  border-radius: 0.35rem;
 }
 
-=======
-  margin: 1rem auto;
-  padding: 1rem;
-}
-
-#controls-container > div {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  max-width: 600px;
-  width: 85%;
-}
-
+/*****************
+ **** BUTTONS ****
+ *****************/
 button {
   background: linear-gradient(45deg, #4b0082, #00fa9a, #00ffff);
   background-size: 200% 200%;
@@ -217,6 +216,7 @@ button {
   color: indigo;
   cursor: pointer;
   font-size: 1rem;
+  font-family: "Quicksand", sans-serif !important;
   padding: 0.75rem 1.5rem;
   font-weight: bold;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -224,22 +224,20 @@ button {
   overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
-
 button:hover {
-  animation: gradient-animation 3s infinite;
+  animation: btn-animation 3s infinite;
   border-color: #6a5acd;
+  font-size: 1.25rem;
   transform: translateY(-0.25rem);
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0.1rem 0.1rem 0.75rem #997dff;
 }
-
 button:active {
-  animation: gradient-animation 3s infinite;
+  animation: btn-animation 3s infinite;
   border-color: #4b0082;
   transform: translateY(0.2rem);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0.1rem 0.1rem 0.75rem #997dff;
 }
-
-@keyframes gradient-animation {
+@keyframes btn-animation {
   0% {
     background-position: 0% 50%;
   }
@@ -251,90 +249,18 @@ button:active {
   }
 }
 
-select,
-input[type="range"],
-input[type="color"] {
-  border-radius: 4px;
-  border: none;
-  font-size: 1rem;
-  margin: 0.5rem auto;
-}
-
-input[type="range"] {
-  width: 85%;
-}
-
-input[type="color"] {
-  width: 5rem;
-  height: 2rem;
-  border-radius: 0.35rem;
-}
-
-legend {
-  color: mediumspringgreen;
-  font-size: 1.5rem;
-  font-weight: 700;
-}
-
-.switch {
-  display: inline-block;
-  height: 25px;
-  max-width: 80px;
-  position: relative;
-  width: 3rem;
-}
-
-.switch input {
-  height: 0;
-  opacity: 0;
-  width: 0;
-}
-
-.slider {
-  background-color: gray;
-  border-radius: 34px;
-  bottom: 0;
-  cursor: pointer;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  transition: background-color 0.4s;
-}
-
-.slider:before {
-  background-color: white;
-  border-radius: 50%;
-  bottom: 4px;
-  content: "";
-  height: 15px;
-  left: 4px;
-  position: absolute;
-  transition: transform 0.4s;
-  width: 18px;
-}
-
-input:checked + .slider {
-  background-color: mediumspringgreen;
-}
-
-input:checked + .slider:before {
-  transform: translateX(25px);
-}
-
+/***************************
+ ****** MEDIA QUERIES ******
+ ***************************/
 @media (min-width: 600px) {
   #controls-container {
     flex-direction: row;
     flex-wrap: wrap;
-  }
 
-  #controls-container > div {
     flex: 1 1 45%;
     max-width: 45%;
   }
-
   button {
     width: auto;
   }
 }
->>>>>>> Stashed changes

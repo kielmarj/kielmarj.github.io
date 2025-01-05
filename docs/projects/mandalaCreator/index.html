@@ -23,7 +23,7 @@
       <div id="sketch-container"></div>
       <div id="controls-container">
         <div>
-          <label for="eraser-toggle">Eraser</label>
+          <legend>Eraser:</legend>
           <label class="switch">
             <input type="checkbox" id="eraser-toggle" />
             <span class="slider"></span>
@@ -41,24 +41,28 @@
           />
         </div>
         <div>
-          <legend>Stroke Color:</legend>
-          <label>
-            <input type="radio" name="color-mode" value="random" checked />
-            Random Color
-          </label>
-          <label>
-            <input type="radio" name="color-mode" value="select" />
-            Select Color
-          </label>
-          <input type="color" id="color-picker" style="display: none" />
-        </div>
+          <fieldset>
+            <legend>Color Mode:</legend>
+            <div>
+              <input class="color-mode" type="radio" id="color-mode-random" name="color-mode" value="random" checked>
+              <label for="color-mode-random">Random</label>
+            </div>
+            <div>
+              <input class="color-mode" type="radio" id="color-mode-select" name="color-mode" value="select" />
+              <label for="color-mode-select">Select</label>
+            </div>
+          </fieldset>
         <div>
           <legend>Background Color:</legend>
           <input type="color" id="background-color-picker" value="#191970" />
         </div>
+      </fieldset>
       </div>
       <div>
-        <button id="reset-btn">Clear Canvas</button>&nbsp;<button id="save-btn">
+        <button id="reset-btn">Clear Canvas</button>
+      </div>
+      <div>  
+      <button id="save-btn">
           Save Image
         </button>
       </div>
