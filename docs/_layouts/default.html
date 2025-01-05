@@ -7,8 +7,6 @@
     <meta name="robots" content="index,follow" />
     <meta name="keywords" content="blog,developer,webdev,opensource,programming,software" />
     <title>{{ page.title | default: site.title }}</title>
-    <!-- Normalize CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
     <!-- Default CSS (Jekyll) -->
     <link rel="stylesheet" href="/assets/default.css" />
 </head>
@@ -30,14 +28,7 @@
         {{ content | default: "..." }}
     </main>
     <footer>
-        <p>
-            &copy; <span id="currentYear"></span> Jess Kielmar |
-            <a href="https://github.com/kielmarj" target="_blank">GitHub</a>
-        </p>
-        <p>
-            Licensed under the
-            <a href="/MIT-LICENSE/" target="_blank">MIT License</a>
-        </p>
+        <p>&copy; <span id="currentYear"></span> Jess Kielmar | <a href="https://github.com/kielmarj" target="_blank">GitHub</a><br>Licensed under the <a href="/MIT-LICENSE/" target="_blank">MIT License</a></p>
     </footer>
     <script src="/assets/default.js"></script>
 </body>
