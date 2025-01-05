@@ -110,9 +110,19 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   window.mousePressed = function () {
-    updateStrokeColor();
+    const colorMode = document.querySelector('input[name="color-mode"]:checked').value;
+    if (colorMode === "random") {
+      const hue = random(0, 360);
+      const saturation = 100;
+      const lightness = 60;
+      const rgb = hslToRgb(hue, saturation / 100, lightness / 100);
+      currentStrokeColor = color(rgb[0], rgb[1], rgb[2]);
+    } else {
+      const hex = document.getElementById("color-picker").value;
+      currentStrokeColor = color(hex);
+    }
   };
-
+  
   document.getElementById("reset-btn").addEventListener("click", () => {
     buffer.background(backgroundColor);
     background(backgroundColor);
