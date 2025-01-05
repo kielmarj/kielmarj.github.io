@@ -3,6 +3,9 @@
  * https://github.com/kielmarj
  **/
 
+/*********************
+ ****** GENERAL ******
+ *********************/
 body {
   background-color: #2e004b;
   color: #b0c4de;
@@ -12,7 +15,6 @@ body {
   padding: 0;
   text-align: center;
 }
-
 header {
   margin: 0 auto;
   padding: 0;
@@ -26,7 +28,6 @@ h1 {
 p {
   margin: 0 auto;
 }
-
 main {
   align-items: center;
   display: flex;
@@ -37,7 +38,6 @@ main {
   padding: 0;
   width: 95%;
 }
-
 footer {
   font-size: 1rem;
   margin: 2% auto;
@@ -55,8 +55,8 @@ a:hover {
 }
 
 /*****************************
-   ****** CANVAS CONTAINER *****
-   *****************************/
+ ****** CANVAS CONTAINER *****
+ *****************************/
 #sketch-container {
   aspect-ratio: 1;
   background-color: #191970;
