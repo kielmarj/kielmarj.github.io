@@ -1,8 +1,3 @@
-/**
- * (c) 2025 Jess Kielmar, MIT License
- * https://github.com/kielmarj
- **/
-
 document.addEventListener("DOMContentLoaded", () => {
   let symmetry = 6;
   let angle = 360 / symmetry;
@@ -128,14 +123,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.querySelectorAll('input[name="color-mode"]').forEach((input) => {
-    input.addEventListener("change", (e) => {
+    input.addEventListener("change", () => {
       const colorPicker = document.getElementById("color-picker");
-      if (e.target.value === "select") {
-        colorPicker.style.display = "inline-block"; // Show the color picker
-      } else {
-        colorPicker.style.display = "none"; // Hide the color picker
-      }
-      updateStrokeColor();
+      colorPicker.style.display = input.value === "select" ? "inline" : "none";
     });
   });
 
@@ -145,8 +135,8 @@ document.addEventListener("DOMContentLoaded", () => {
     background(backgroundColor);
   });
 
-  document.getElementById("save-btn").addEventListener("click", () => {
-    saveCanvas("mandala", "png");
+    document.getElementById("save-btn").addEventListener("click", () => {
+    saveCanvas('mandala', 'png');
   });
 
   window.windowResized = function () {
