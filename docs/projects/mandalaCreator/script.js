@@ -25,39 +25,22 @@ document.addEventListener("DOMContentLoaded", () => {
     buffer.background(backgroundColor);
     background(backgroundColor);
 
-    // Prevent page scrolling while interacting with the canvas
-    canvas.elt.addEventListener("touchstart", handleTouchStart, { passive: false });
-    canvas.elt.addEventListener("touchmove", handleTouchMove, { passive: false });
+    // Block scrolling only while interacting with the canvas
+    canvas.elt.addEventListener("touchmove", preventScrollDuringCanvasInteraction, { passive: false });
+    canvas.elt.addEventListener("touchstart", preventScrollDuringCanvasInteraction, { passive: false });
   };
 
-  function handleTouchStart(event) {
+  function preventScrollDuringCanvasInteraction(event) {
     if (event.target === document.querySelector("canvas")) {
-      event.preventDefault(); // Stop scroll initiation
-    }
-  }
-
-  function handleTouchMove(event) {
-    if (event.target === document.querySelector("canvas")) {
-      event.preventDefault(); // Stop scrolling during touch move
+      event.preventDefault(); // Prevent scrolling on canvas interaction
     }
   }
 
   window.draw = function () {
+    // Draw using either mouse or touch
     if (mouseIsPressed || touches.length > 0) {
-      const lineStartX = mouseX - width / 2;
-      const lineStartY = mouseY - height / 2;
-      const lineEndX = pmouseX - width / 2;
-      const lineEndY = pmouseY - height / 2;
-
-      const eraserToggle = document.getElementById("eraser-toggle").checked;
-      const drawColor = eraserToggle
-        ? backgroundColor
-        : color(
-            currentStrokeColor.levels[0],
-            currentStrokeColor.levels[1],
-            currentStrokeColor.levels[2],
-            currentStrokeColor.levels[3]
-          );
+      const drawColor = getCurrentStrokeColor();
+      const [lineStartX, lineStartY, lineEndX, lineEndY] = getLineCoordinates();
 
       buffer.push();
       buffer.translate(width / 2, height / 2);
@@ -73,21 +56,31 @@ document.addEventListener("DOMContentLoaded", () => {
       buffer.pop();
     }
 
-    image(buffer, 0, 0); // Draw the buffer onto the main canvas
+    image(buffer, 0, 0); // Draw buffer onto canvas
   };
 
+  function getLineCoordinates() {
+    const lineStartX = mouseX - width / 2;
+    const lineStartY = mouseY - height / 2;
+    const lineEndX = pmouseX - width / 2;
+    const lineEndY = pmouseY - height / 2;
+    return [lineStartX, lineStartY, lineEndX, lineEndY];
+  }
+
+  function getCurrentStrokeColor() {
+    const eraserToggle = document.getElementById("eraser-toggle").checked;
+    return eraserToggle
+      ? backgroundColor
+      : color(
+          currentStrokeColor.levels[0],
+          currentStrokeColor.levels[1],
+          currentStrokeColor.levels[2],
+          currentStrokeColor.levels[3]
+        );
+  }
+
   window.mousePressed = function () {
-    const colorMode = document.querySelector('input[name="color-mode"]:checked').value;
-    if (colorMode === "random") {
-      const hue = random(0, 360);
-      const saturation = 100;
-      const lightness = 60;
-      const rgb = hslToRgb(hue, saturation / 100, lightness / 100);
-      currentStrokeColor = color(rgb[0], rgb[1], rgb[2]);
-    } else {
-      const hex = document.getElementById("color-picker").value;
-      currentStrokeColor = color(hex);
-    }
+    updateStrokeColor();
   };
 
   document.getElementById("reset-btn").addEventListener("click", () => {
@@ -100,13 +93,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.querySelectorAll('input[name="color-mode"]').forEach((input) => {
-    input.addEventListener("change", (e) => {
+    input.addEventListener("change", () => {
       const colorPicker = document.getElementById("color-picker");
-      if (e.target.value === "select") {
-        colorPicker.style.display = "inline";
-      } else {
-        colorPicker.style.display = "none";
-      }
+      colorPicker.style.display = input.value === "select" ? "inline" : "none";
     });
   });
 
@@ -120,9 +109,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const size = adjustCanvasSize();
     resizeCanvas(size, size);
     let newBuffer = createGraphics(size, size);
-    newBuffer.image(buffer, 0, 0, size, size); // Copy old buffer to the new one
+    newBuffer.image(buffer, 0, 0, size, size); // Copy old buffer to new one
     buffer = newBuffer;
   };
+
+  function updateStrokeColor() {
+    const colorMode = document.querySelector('input[name="color-mode"]:checked').value;
+    if (colorMode === "random") {
+      const hue = random(0, 360);
+      const saturation = 100;
+      const lightness = 60;
+      const rgb = hslToRgb(hue, saturation / 100, lightness / 100);
+      currentStrokeColor = color(rgb[0], rgb[1], rgb[2]);
+    } else {
+      const hex = document.getElementById("color-picker").value;
+      currentStrokeColor = color(hex);
+    }
+  }
 
   function hslToRgb(h, s, l) {
     let r, g, b;
@@ -154,9 +157,6 @@ document.addEventListener("DOMContentLoaded", () => {
       g = 0;
       b = x;
     }
-    r = Math.round((r + m) * 255);
-    g = Math.round((g + m) * 255);
-    b = Math.round((b + m) * 255);
-    return [r, g, b];
+    return [Math.round((r + m) * 255), Math.round((g + m) * 255), Math.round((b + m) * 255)];
   }
 });
