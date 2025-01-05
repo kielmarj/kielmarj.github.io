@@ -4,80 +4,100 @@
  **/
 
 document.addEventListener("DOMContentLoaded", () => {
-	const canvas = document.getElementById('yourCanvasId');
-	const ctx = canvas.getContext('2d');
+  const canvas = document.getElementById('yourCanvasId');
+  const ctx = canvas.getContext('2d');
 
-	// Create an offscreen canvas for persistent drawing. This is to prevent the canvas from being erased if it is scrolled out of view.
-	const offscreenCanvas = document.createElement('canvas');
-	const offscreenCtx = offscreenCanvas.getContext('2d');
+  // Store all drawing operations in an array
+  const drawingOperations = [];
 
-	function resizeCanvas() {
-		// Resize both canvases
-		offscreenCanvas.width = canvas.width = window.innerWidth;
-		offscreenCanvas.height = canvas.height = window.innerHeight;
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    replayDrawingOperations(); // Redraw all stored operations
+  }
 
-		// Redraw the offscreen content onto the visible canvas
-		ctx.drawImage(offscreenCanvas, 0, 0);
-	}
+  window.addEventListener('resize', resizeCanvas);
 
-	window.addEventListener('resize', resizeCanvas);
+  let isDrawing = false;
 
-	let isDrawing = false;
+  function getTouchPos(canvas, touchEvent) {
+    const rect = canvas.getBoundingClientRect();
+    return {
+      x: touchEvent.touches[0].clientX - rect.left,
+      y: touchEvent.touches[0].clientY - rect.top
+    };
+  }
 
-	function getTouchPos(canvas, touchEvent) {
-		const rect = canvas.getBoundingClientRect();
-		return {
-			x: touchEvent.touches[0].clientX - rect.left,
-			y: touchEvent.touches[0].clientY - rect.top
-		};
-	}
+  function startDrawing(event) {
+    isDrawing = true;
+    const pos = getTouchPos(canvas, event);
+    ctx.beginPath();
+    ctx.moveTo(pos.x, pos.y);
+    // Add operation to the history
+    drawingOperations.push({ type: 'beginPath' });
+    drawingOperations.push({ type: 'moveTo', x: pos.x, y: pos.y });
+  }
 
-	function startDrawing(event) {
-		isDrawing = true;
-		const pos = getTouchPos(canvas, event);
-		offscreenCtx.beginPath();
-		offscreenCtx.moveTo(pos.x, pos.y);
-	}
+  function draw(event) {
+    if (!isDrawing) return;
 
-	function draw(event) {
-		if (!isDrawing) return;
+    const pos = getTouchPos(canvas, event);
+    ctx.lineTo(pos.x, pos.y);
+    ctx.stroke();
 
-		const pos = getTouchPos(canvas, event);
-		offscreenCtx.lineTo(pos.x, pos.y);
-		offscreenCtx.stroke();
+    // Add operation to the history
+    drawingOperations.push({ type: 'lineTo', x: pos.x, y: pos.y });
+    drawingOperations.push({ type: 'stroke' });
+  }
 
-		// Mirror the drawing to the visible canvas
-		ctx.drawImage(offscreenCanvas, 0, 0);
-	}
+  function stopDrawing() {
+    if (isDrawing) {
+      isDrawing = false;
+      ctx.closePath();
+      // Add operation to the history
+      drawingOperations.push({ type: 'closePath' });
+    }
+  }
 
-	function stopDrawing() {
-		if (isDrawing) {
-			isDrawing = false;
-			offscreenCtx.closePath();
-		}
-	}
+  function replayDrawingOperations() {
+    // Replay all stored drawing operations
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas first
+    for (const operation of drawingOperations) {
+      if (operation.type === 'beginPath') {
+        ctx.beginPath();
+      } else if (operation.type === 'moveTo') {
+        ctx.moveTo(operation.x, operation.y);
+      } else if (operation.type === 'lineTo') {
+        ctx.lineTo(operation.x, operation.y);
+      } else if (operation.type === 'stroke') {
+        ctx.stroke();
+      } else if (operation.type === 'closePath') {
+        ctx.closePath();
+      }
+    }
+  }
 
-	// Prevent default scrolling during touch interactions
-	canvas.addEventListener('touchstart', function (event) {
-		event.preventDefault();
-		startDrawing(event);
-	}, { passive: false });
+  // Prevent default scrolling behavior
+  canvas.addEventListener('touchstart', function(event) {
+    event.preventDefault();
+    startDrawing(event);
+  }, { passive: false });
 
-	canvas.addEventListener('touchmove', function (event) {
-		event.preventDefault();
-		draw(event);
-	}, { passive: false });
+  canvas.addEventListener('touchmove', function(event) {
+    event.preventDefault();
+    draw(event);
+  }, { passive: false });
 
-	canvas.addEventListener('touchend', function (event) {
-		event.preventDefault();
-		stopDrawing();
-	}, { passive: false });
+  canvas.addEventListener('touchend', function(event) {
+    event.preventDefault();
+    stopDrawing();
+  }, { passive: false });
 
-	// Initial canvas setup
-	resizeCanvas();
+  // Redraw on scroll
+  window.addEventListener('scroll', () => {
+    replayDrawingOperations();
+  });
 
-	// Redraw the offscreen canvas on the visible canvas during scroll
-	window.addEventListener('scroll', () => {
-		ctx.drawImage(offscreenCanvas, 0, 0);
-	});
+  // Initial setup
+  resizeCanvas();
 });
