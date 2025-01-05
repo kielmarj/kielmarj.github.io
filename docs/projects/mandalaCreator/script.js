@@ -1,8 +1,3 @@
-/**
- * (c) 2025 Jess Kielmar, MIT License
- * https://github.com/kielmarj
- **/
-
 document.addEventListener("DOMContentLoaded", () => {
   let symmetry = 6;
   let angle = 360 / symmetry;
@@ -10,10 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
   let strokeWeightValue = 1.5;
   let backgroundColor = "midnightblue";
   let buffer;
-  let isDrawing = false; // Track whether the user is drawing
+  let isDrawing = false;
 
   function adjustCanvasSize() {
-    return Math.min(window.innerWidth * 0.9);
+    const vwWidth = Math.min(window.innerWidth * 0.9);
+    return vwWidth; // Canvas is 90vw
   }
 
   window.setup = function () {
@@ -61,8 +57,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function simulateMouseEvent(x, y) {
-    mouseX = x - canvas.elt.getBoundingClientRect().left;
-    mouseY = y - canvas.elt.getBoundingClientRect().top;
+    const canvasRect = canvas.elt.getBoundingClientRect(); // Get canvas position and size
+    mouseX = x - canvasRect.left; // Adjust X relative to canvas
+    mouseY = y - canvasRect.top; // Adjust Y relative to canvas
     pmouseX = mouseX;
     pmouseY = mouseY;
   }
@@ -73,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const [lineStartX, lineStartY, lineEndX, lineEndY] = getLineCoordinates();
 
       buffer.push();
-      buffer.translate(width / 2, height / 2);
+      buffer.translate(buffer.width / 2, buffer.height / 2); // Use buffer's center
       for (let i = 0; i < symmetry; i++) {
         const rotationAngle = angle * i;
         buffer.rotate(rotationAngle);
@@ -86,14 +83,14 @@ document.addEventListener("DOMContentLoaded", () => {
       buffer.pop();
     }
 
-    image(buffer, 0, 0); // Draw the buffer onto the main canvas
+    image(buffer, 0, 0, width, height); // Scale buffer to canvas size
   };
 
   function getLineCoordinates() {
-    const lineStartX = mouseX - width / 2;
-    const lineStartY = mouseY - height / 2;
-    const lineEndX = pmouseX - width / 2;
-    const lineEndY = pmouseY - height / 2;
+    const lineStartX = mouseX - buffer.width / 2;
+    const lineStartY = mouseY - buffer.height / 2;
+    const lineEndX = pmouseX - buffer.width / 2;
+    const lineEndY = pmouseY - buffer.height / 2;
     return [lineStartX, lineStartY, lineEndX, lineEndY];
   }
 
