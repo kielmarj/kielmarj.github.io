@@ -1,91 +1,81 @@
 <!DOCTYPE html>
-<!-- 
- * (c) 2025 Jess Kielmar, MIT License
- * https://github.com/kielmarj
+<!--
+ **************************************
+ * Mandala Creator index.html         *
+ * (c) 2025 Jess Kielmar, MIT License *
+ * https://github.com/kielmarj        *
+ **************************************
 -->
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mandala Creator</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <header>
-      <h1>Mandala Creator</h1>
-    </header>
-    <main>
-      <p>Tap or click and drag to create symmetrical patterns.</p>
-      <div id="sketch-container"></div>
-      <div id="controls-container">
-        <div>
-          <label for="eraser-toggle">Eraser</label>
-          <label class="switch">
-            <input type="checkbox" id="eraser-toggle" />
-            <span class="slider"></span>
-          </label>
-        </div>
-        <div>
-          <legend>Size:</legend>
-          <input
-            id="stroke-weight-slider"
-            type="range"
-            min="1.5"
-            max="15"
-            value="3"
-            step="1"
-          />
-        </div>
-        <div>
-          <legend>Stroke Color:</legend>
-          <label>
-            <input type="radio" name="color-mode" value="random" checked />
-            Random Color
-          </label>
-          <label>
-            <input type="radio" name="color-mode" value="select" />
-            Select Color
-          </label>
-          <input type="color" id="color-picker" style="display: none" />
-        </div>
-        <div>
-          <legend>Background Color:</legend>
-          <input type="color" id="background-color-picker" value="#191970" />
-        </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mandala Creator</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <header>
+    <h1>Mandala Creator</h1>
+  </header>
+  <main>
+    <p>Tap or click and drag to create symmetrical patterns.</p>
+    <div id="sketch-container"></div>
+    <div id="controls-container">
+      <button id="undo-btn">Undo</button>
+      <div>
+        <label for="eraser-toggle" class="styled-label">Eraser</label>
+        <label class="switch">
+          <input type="checkbox" id="eraser-toggle" />
+          <span class="slider"></span>
+        </label>
       </div>
       <div>
-        <button id="reset-btn">Clear Canvas</button>&nbsp;<button id="save-btn">
-          Save Image
-        </button>
+        <label for="stroke-weight-slider" class="styled-label">Brush Size: <span
+            id="stroke-weight-value">1.5</span></label>
+        <input type="range" id="stroke-weight-slider" value="1.5" min="0.5" max="10" step="0.1">
       </div>
-    </main>
-    <footer>
-      <p>
-        &copy; 2025
-        <a
-          href="https://github.com/kielmarj"
-          target="_blank"
-          rel="noopener noreferrer"
-          >Jess Kielmar</a
-        >. Licensed under the
-        <a
-          href="https://kielmarj.github.io/MIT-LICENSE/"
-          target="_blank"
-          rel="noopener noreferrer"
-          >MIT License</a
-        ><br /><a
-          href="https://buymeacoffee.com/kielmarj"
-          target="_blank"
-          rel="noopener noreferrer"
-          ><small>Buy me a coffee</small></a
-        >
-      </p>
-    </footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
-    <script src="script.js"></script>
-  </body>
+      <div>
+        <label for="symmetry-slider" class="styled-label">Segments: <span id="symmetry-value">8</span></label>
+        <input type="range" id="symmetry-slider" value="8" min="4" max="20" step="2">
+      </div>
+      <div>
+        <legend>Brush Color</legend>
+        <label>
+          <input type="radio" name="color-mode" value="random" checked />
+          Random Color
+        </label>
+        <label>
+          <input type="radio" name="color-mode" value="select" />
+          Select Color
+        </label>
+        <input type="color" id="color-picker" style="display: none" />
+      </div>
+      <div>
+        <label for="background-color-picker" class="styled-label">Background Color</label>
+        <input type="color" id="background-color-picker" value="#191970" />
+      </div>
+    </div>
+    <div>
+      <button id="reset-btn">Clear Canvas</button>&nbsp;<button id="save-btn">
+        Save Image
+      </button>
+    </div>
+  </main>
+  <footer>
+    <p>
+      &copy; 2025
+      <a href="https://github.com/kielmarj" target="_blank" rel="noopener noreferrer">Jess Kielmar</a>. Licensed under
+      the
+      <a href="https://kielmarj.github.io/MIT-LICENSE/" target="_blank" rel="noopener noreferrer">MIT
+        License</a><br /><a href="https://buymeacoffee.com/kielmarj" target="_blank" rel="noopener noreferrer">Buy me a
+        coffee</a>
+    </p>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
 </html>

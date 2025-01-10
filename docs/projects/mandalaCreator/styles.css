@@ -1,215 +1,361 @@
+/**************************************
+ * Mandala Creator styles.css         *
+ * (c) 2025 Jess Kielmar, MIT License *
+ * https://github.com/kielmarj        *
+ **************************************/
+
+/****** GENERAL PAGE STYLING ******/
 body {
-	background-color: rgb(46, 0, 75);
-	color: rgb(176, 196, 222);
-	font-family: Quicksand, sans-serif;
-	height: 100vh;
-	margin: 0px;
-	padding: 0px;
-	text-align: center;
+  background-color: #2e004b;
+  color: #b0c4de;
+  font-family: Quicksand, sans-serif;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  text-align: center;
 }
 
-header {
-	margin: 0px auto;
-	padding: 0px;
-	width: 95%;
+header,
+main,
+footer {
+  margin: 0 auto;
+  padding: 0;
+  width: 95%;
 }
 
 h1 {
-	color: mediumspringgreen;
-	font-size: 2.5rem;
-	margin: 1% auto;
-}
-
-p {
-	margin: 0px auto;
+  color: #00fa9a;
+  font-size: 2.5rem;
+  margin: 1% auto;
 }
 
 main {
-	align-items: center;
-	display: flex;
-	flex-direction: column;
-	font-size: 1.25rem;
-	justify-content: center;
-	margin: 0px auto;
-	padding: 0px;
-	width: 95%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.25rem;
+  justify-content: center;
 }
 
 footer {
-	font-size: 1rem;
-	margin: 1rem auto;
-	width: 95%;
+  font-size: 1rem;
+  margin: 5% auto;
+  padding: 2%;
 }
 
 a {
-	color: rgb(0, 255, 255);
-	text-decoration: none;
+  color: #00ffff;
+  text-decoration: none;
 }
 
 a:hover {
-	color: rgb(0, 250, 154);
-	text-decoration: underline;
-	transition: color 0.3s, text-decoration 0.3s;
+  color: #00fa9a;
+  text-decoration: underline;
+  transition: color 0.3s, text-decoration 0.3s;
 }
 
+/****** SKETCH AREA ******/
 #sketch-container {
-	aspect-ratio: 1 / 1;
-	background-color: rgb(25, 25, 112);
-	border-radius: 1rem;
-	border: 0.05rem groove rgb(0, 250, 154);
-	box-shadow: rgb(25, 25, 112) 0.2rem 0.2rem 0.9rem;
-	height: auto;
-	margin: 1% auto;
-	max-width: 800px;
-	overflow: hidden;
-	width: 85vw;
+  align-items: center;
+  aspect-ratio: 1 / 1;
+  background-color: #191970;
+  border: 0.05rem groove #00fa9a;
+  border-radius: 1rem;
+  box-shadow: #0ff 0.2rem 0.2rem 0.75rem;
+  display: flex;
+  justify-content: center;
+  margin: 1% auto;
+  max-width: 75vw;
+  overflow: hidden;
+  padding: 0;
+  width: 85vw;
 }
 
+/****** CONTROLS ******/
 #controls-container {
-	align-items: center;
-	background-color: rgb(46, 0, 75);
-	border-radius: 1rem;
-	box-shadow: rgb(176, 196, 222) 0.2rem 0.2rem 0.9rem;
-	box-sizing: border-box;
-	display: flex;
-	flex-direction: column;
-	gap: 1rem;
-	justify-content: center;
-	margin: 1rem auto;
-	padding: 1rem;
+  align-items: center;
+  background-color: #2e004b;
+  border-radius: 1rem;
+  box-shadow: 0.2rem 0.2rem 0.75rem #0ff;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  margin: 1rem auto;
+  padding: 1rem;
 }
 
 #controls-container>div {
-	align-items: center;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	max-width: 600px;
-	width: 85%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 
-button {
-	background: linear-gradient(45deg, rgb(75, 0, 130), rgb(0, 250, 154), rgb(0, 255, 255)) 0% 0% / 200% 200%;
-	border-radius: 1rem;
-	border: 0.15rem solid rgb(106, 90, 205);
-	color: indigo;
-	cursor: pointer;
-	font-size: 1rem;
-	padding: 0.75rem 1.5rem;
-	font-weight: bold;
-	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;
-	position: relative;
-	overflow: hidden;
-	transition: transform 0.2s, box-shadow 0.3s, border-color 0.3s;
+/* Labels */
+legend,
+.styled-label {
+  color: #00fa9a;
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 700;
 }
 
-button:hover {
-	animation: 3s ease 0s infinite normal none running gradient-animation;
-	border-color: rgb(106, 90, 205);
-	transform: translateY(-0.25rem);
-	box-shadow: rgba(0, 0, 0, 0.15) 0px 6px 8px;
-}
-
-button:active {
-	animation: 3s ease 0s infinite normal none running gradient-animation;
-	border-color: rgb(75, 0, 130);
-	transform: translateY(0.2rem);
-	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;
-}
-
-@keyframes gradient-animation {
-	0% {
-		background-position: 0% 50%;
-	}
-	
-	50% {
-		background-position: 100% 50%;
-	}
-	
-	100% {
-		background-position: 0% 50%;
-	}
-}
-
+/* General styling for select, range, and color inputs */
 select,
-input[type="range"],
-input[type="color"] {
-	border-radius: 4px;
-	border: none;
-	font-size: 1rem;
-	margin: 0.5rem auto;
-}
-
 input[type="range"] {
-	width: 85%;
+  border-radius: 4px;
+  font-size: 1rem;
+  margin: 0.5rem auto;
 }
 
-input[type="color"] {
-	width: 5rem;
-	height: 2rem;
-	border-radius: 0.35rem;
-}
-
-legend {
-	color: mediumspringgreen;
-	font-size: 1.5rem;
-	font-weight: 700;
-}
-
-.switch {
-	display: inline-block;
-	height: 25px;
-	max-width: 80px;
-	position: relative;
-	width: 3rem;
-}
-
+/****** ERASER ******/
+/* Hide default HTML checkbox where the switch is */
 .switch input {
-	height: 0px;
-	opacity: 0;
-	width: 0px;
+  height: 0;
+  opacity: 0;
+  width: 0;
 }
 
+/* Background box for eraser */
+.switch {
+  background-color: #6a5acd;
+  border: 0.025rem groove #4b296f;
+  border-radius: 1rem;
+  box-shadow: inset 0 0 0.75rem #330057, 0.25rem 0.25rem 0.75rem #2c0030;
+  cursor: pointer;
+  display: inline-block;
+  height: 2rem;
+  margin: 0 auto;
+  position: relative;
+  transition: background-color 0.4s;
+  width: 4rem;
+}
+
+/* Eraser slider */
 .slider {
-	background-color: gray;
-	border-radius: 34px;
-	inset: 0px;
-	cursor: pointer;
-	position: absolute;
-	transition: background-color 0.4s;
+  border-radius: 1rem;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: 0.4s;
 }
 
-.slider::before {
-	background-color: white;
-	border-radius: 50%;
-	bottom: 4px;
-	content: "";
-	height: 15px;
-	left: 4px;
-	position: absolute;
-	transition: transform 0.4s;
-	width: 18px;
+.slider:before {
+  background-color: #997dff;
+  border: 0.025rem solid #4b296f;
+  border-radius: 50%;
+  bottom: 0.25rem;
+  box-shadow: inset 0 0 0.25rem #4b0082;
+  content: "";
+  height: 1.5rem;
+  left: 0.25rem;
+  position: absolute;
+  transition: transform 0.4s;
+  width: 1.5rem;
+}
+
+.slider:hover {
+  background-color: #9370db;
 }
 
 input:checked+.slider {
-	background-color: mediumspringgreen;
+  background-color: mediumspringgreen;
+  box-shadow: inset 0 0 0.75rem #330057, 0.1rem 0.1rem 0.75rem #997dff;
 }
 
-input:checked+.slider::before {
-	transform: translateX(25px);
+input:checked+.slider:before {
+  transform: translateX(2rem);
 }
 
+/****** BRUSH SIZE ******/
+input[type="range"] {
+  -webkit-appearance: none;
+  background: #4c2d61;
+  border-radius: 0.25rem;
+  height: 0.5rem;
+  outline: none;
+  transition: background 0.3s;
+  width: 10rem;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background: #00fa9a;
+  border-radius: 50%;
+  box-shadow: 0 0 0.5rem #0ff;
+  cursor: pointer;
+  height: 1rem;
+  transition: background 0.3s, box-shadow 0.3s;
+  width: 1rem;
+}
+
+input[type="range"]::-moz-range-thumb {
+  background: #00fa9a;
+  border-radius: 50%;
+  box-shadow: 0 0 0.5rem #0ff;
+  cursor: pointer;
+  height: 1rem;
+  transition: background 0.3s, box-shadow 0.3s;
+  width: 1rem;
+}
+
+input[type="range"]:hover {
+  background: #3b2450;
+}
+
+input[type="range"]:hover::-webkit-slider-thumb {
+  background: #00ffff;
+  box-shadow: 0 0 0.75rem #00fa9a;
+}
+
+input[type="range"]:hover::-moz-range-thumb {
+  background: #00ffff;
+  box-shadow: 0 0 0.75rem #00fa9a;
+}
+
+input[type="range"]:hover {
+  background-color: #9370db;
+}
+
+/* Radio buttons for brush color */
+input[type="radio"] {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  accent-color: #00fa9a;
+  appearance: none;
+  background-color: #9370db;
+  border: 2px solid #4c2d61;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-block;
+  height: 1rem;
+  margin-right: 0.5rem;
+  width: 1rem;
+}
+
+input[type="radio"]:checked {
+  background-color: #00fa9a;
+  border-color: #4c2d61;
+  box-shadow: 0 0 0.5rem #0ff;
+}
+
+label {
+  color: #a668f7;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+label:hover {
+  color: #00fa9a;
+}
+
+input[type="radio"]:hover+label {
+  color: #00fa9a;
+}
+
+input[type="radio"]:checked+label {
+  color: #00fa9a;
+  font-weight: bold;
+}
+
+/****** COLOR PICKERS ******/
+input[type="color"] {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border: 0.025rem solid #9370db;
+  border-radius: 0.35rem;
+  border-radius: 8px;
+  cursor: pointer;
+  height: 3rem;
+  padding: 0;
+  width: 6rem;
+
+  /* Purple border */
+}
+
+input[type="color"]:hover {
+  border-color: #00fa9a;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+  border: none;
+}
+
+input[type="color"]::-moz-color-swatch {
+  border: none;
+}
+
+/****** BUTTONS ******/
+button {
+  background: linear-gradient(45deg, #ba0add, #0ff, #ba0add) 0% 0% / 200% 200%;
+  border: none;
+  border-radius: 1rem;
+  color: #4b0082;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 1rem auto;
+  padding: 0.75rem 1.5rem;
+  position: relative;
+  text-shadow: 0 0 0.15rem #fff;
+  transition: transform 0.2s;
+}
+
+button:hover,
+button:active {
+  animation: 3s ease 0s infinite normal none running gradient-animation;
+}
+
+button:hover {
+  box-shadow: 0 0 0.5rem #0ff;
+  transform: translateY(-0.25rem);
+}
+
+button:active {
+  transform: translateY(0.2rem);
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+#undo-btn {
+  display: inline-block;
+  margin: 0 auto;
+}
+
+/****** MEDIA QUERIES ******/
 @media (min-width: 600px) {
-	#controls-container {
-		flex-flow: wrap;
-	}
-	
-	#controls-container>div {
-		flex: 1 1 45%;
-		max-width: 45%;
-	}
-	
-	button {
-		width: auto;
-	}
+  #controls-container {
+    flex-flow: wrap;
+  }
+
+  #controls-container>div {
+    flex: 1 1 45%;
+    max-width: 45%;
+  }
+
+  button {
+    width: auto;
+  }
 }
