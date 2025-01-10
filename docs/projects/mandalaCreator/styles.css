@@ -13,7 +13,7 @@ body {
   margin: 0;
   padding: 0;
   text-align: center;
-}
+ }
 
 header,
 main,
@@ -21,20 +21,20 @@ footer {
   margin: 0 auto;
   padding: 0;
   width: 95%;
-}
+ }
 
 h1 {
   color: #00fa9a;
   font-size: 2.5rem;
   margin: 1% auto;
-}
+ }
 
 header p {
+  color: #997dff;
   font-size: 2rem;
-  color:#997dff;
   margin: 0 auto;
   padding: 0;
-}
+ }
 
 main {
   align-items: center;
@@ -42,24 +42,24 @@ main {
   flex-direction: column;
   font-size: 1.25rem;
   justify-content: center;
-}
+ }
 
 footer {
   font-size: 1rem;
-  margin: 5% auto;
+  margin: 3% auto;
   padding: 2%;
-}
+ }
 
 a {
   color: #00ffff;
   text-decoration: none;
-}
+ }
 
 a:hover {
   color: #00fa9a;
   text-decoration: underline;
   transition: color 0.3s, text-decoration 0.3s;
-}
+ }
 
 /****** SKETCH AREA ******/
 #sketch-container {
@@ -76,10 +76,11 @@ a:hover {
   overflow: hidden;
   padding: 0;
   width: 75vw;
-}
+ }
 
 /****** CONTROLS ******/
 #controls-container {
+  align-content: center;
   align-items: center;
   background-color: #2e004b;
   border-radius: 1rem;
@@ -93,22 +94,21 @@ a:hover {
   max-width: 800px;
   padding: 1rem;
   width: 80%;
-}
+ }
 
 #controls-container>div {
   align-items: center;
   display: flex;
   flex-direction: column;
-}
+ }
 
 /* Labels */
 legend,
 .styled-label {
   color: #00fa9a;
-  display: block;
   font-size: 1.25rem;
   font-weight: 700;
-}
+ }
 
 /* General styling for select, range, and color inputs */
 select,
@@ -116,7 +116,7 @@ input[type="range"] {
   border-radius: 4px;
   font-size: 1rem;
   margin: 0.5rem auto;
-}
+ }
 
 /****** ERASER ******/
 /* Hide default HTML checkbox where the switch is */
@@ -124,7 +124,7 @@ input[type="range"] {
   height: 0;
   opacity: 0;
   width: 0;
-}
+ }
 
 /* Background box for eraser */
 .switch {
@@ -134,11 +134,10 @@ input[type="range"] {
   box-shadow: inset 0 0 0.75rem #330057, 0.25rem 0.25rem 0.75rem #2c0030;
   cursor: pointer;
   height: 2rem;
-  margin: 0 auto;
   position: relative;
   transition: background-color 0.4s;
   width: 4rem;
-}
+ }
 
 /* Eraser slider */
 .slider {
@@ -150,7 +149,7 @@ input[type="range"] {
   right: 0;
   top: 0;
   transition: 0.4s;
-}
+ }
 
 .slider:before {
   background-color: #997dff;
@@ -164,20 +163,20 @@ input[type="range"] {
   position: absolute;
   transition: transform 0.4s;
   width: 1.5rem;
-}
+ }
 
 .slider:hover {
   background-color: #9370db;
-}
+ }
 
 input:checked+.slider {
   background-color: mediumspringgreen;
   box-shadow: inset 0 0 0.75rem #330057, 0.1rem 0.1rem 0.75rem #997dff;
-}
+ }
 
 input:checked+.slider:before {
   transform: translateX(2rem);
-}
+ }
 
 /****** BRUSH SIZE ******/
 input[type="range"] {
@@ -188,7 +187,7 @@ input[type="range"] {
   outline: none;
   transition: background 0.3s;
   width: 10rem;
-}
+ }
 
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -199,7 +198,7 @@ input[type="range"]::-webkit-slider-thumb {
   height: 1rem;
   transition: background 0.3s, box-shadow 0.3s;
   width: 1rem;
-}
+ }
 
 input[type="range"]::-moz-range-thumb {
   background: #00fa9a;
@@ -209,25 +208,25 @@ input[type="range"]::-moz-range-thumb {
   height: 1rem;
   transition: background 0.3s, box-shadow 0.3s;
   width: 1rem;
-}
+ }
 
 input[type="range"]:hover {
   background: #3b2450;
-}
+ }
 
 input[type="range"]:hover::-webkit-slider-thumb {
   background: #00ffff;
   box-shadow: 0 0 0.75rem #00fa9a;
-}
+ }
 
 input[type="range"]:hover::-moz-range-thumb {
   background: #00ffff;
   box-shadow: 0 0 0.75rem #00fa9a;
-}
+ }
 
 input[type="range"]:hover {
   background-color: #9370db;
-}
+ }
 
 /* Radio buttons for brush color */
 input[type="radio"] {
@@ -239,36 +238,35 @@ input[type="radio"] {
   border: 2px solid #4c2d61;
   border-radius: 50%;
   cursor: pointer;
-  display: inline-block;
   height: 1rem;
   margin-right: 0.5rem;
   width: 1rem;
-}
+ }
 
 input[type="radio"]:checked {
   background-color: #00fa9a;
   border-color: #4c2d61;
   box-shadow: 0 0 0.5rem #0ff;
-}
+ }
 
 label {
   color: #a668f7;
   cursor: pointer;
   transition: color 0.3s;
-}
+ }
 
 label:hover {
   color: #00fa9a;
-}
+ }
 
 input[type="radio"]:hover+label {
   color: #00fa9a;
-}
+ }
 
 input[type="radio"]:checked+label {
   color: #00fa9a;
   font-weight: bold;
-}
+ }
 
 /****** COLOR PICKERS ******/
 input[type="color"] {
@@ -282,23 +280,23 @@ input[type="color"] {
   height: 3rem;
   padding: 0;
   width: 6rem;
-}
+ }
 
 input[type="color"]:hover {
   border-color: #00fa9a;
-}
+ }
 
 input[type="color"]::-webkit-color-swatch-wrapper {
   padding: 0;
-}
+ }
 
 input[type="color"]::-webkit-color-swatch {
   border: none;
-}
+ }
 
 input[type="color"]::-moz-color-swatch {
   border: none;
-}
+ }
 
 /****** BUTTONS ******/
 button {
@@ -307,7 +305,6 @@ button {
   border-radius: 1rem;
   color: #4b0082;
   cursor: pointer;
-  display: inline-block;
   font-size: 1rem;
   font-weight: bold;
   margin: 1rem auto;
@@ -315,53 +312,52 @@ button {
   position: relative;
   text-shadow: 0 0 0.15rem #fff;
   transition: transform 0.2s;
-}
+ }
 
 button:hover,
 button:active {
   animation: 3s ease 0s infinite normal none running gradient-animation;
-}
+ }
 
 button:hover {
   box-shadow: 0 0 0.5rem #0ff;
   transform: translateY(-0.25rem);
-}
+ }
 
 button:active {
   transform: translateY(0.2rem);
-}
+ }
 
 @keyframes gradient-animation {
   0% {
     background-position: 0% 50%;
-  }
+   }
 
   50% {
     background-position: 100% 50%;
-  }
+   }
 
   100% {
     background-position: 0% 50%;
-  }
-}
+   }
+ }
 
 #undo-btn {
-  display: inline-block;
   margin: 0 auto;
-}
+ }
 
 /****** MEDIA QUERIES ******/
 @media (min-width: 600px) {
   #controls-container {
     flex-flow: wrap;
-  }
+   }
 
   #controls-container>div {
     flex: 1 1 45%;
     max-width: 45%;
-  }
+   }
 
   button {
     width: auto;
-  }
-}
+   }
+ }
