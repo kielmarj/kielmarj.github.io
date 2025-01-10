@@ -1,10 +1,8 @@
-/**
- * Author: (c) 2024 Jess Kielmar
- *         kielmarj AT gmail DOT com
- *         https://github.com/kielmarj
- *           *****(hire me!)*****
- * License: MIT
- **/
+/****************************************
+ * Synthwave '84 Code Blocks script.js  *
+ * (c) 2025 Jess Kielmar, MIT License   *
+ * https://github.com/kielmarj          *
+ ****************************************/
 
 // JavaScript function to copy code to clipboard with fallback for older browsers
 function copyCode(button) {
