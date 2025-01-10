@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  let symmetry = 6;
+  let symmetry = 8;
   let angle = 360 / symmetry;
   let currentStrokeColor;
   let strokeWeightValue = 1.5;
