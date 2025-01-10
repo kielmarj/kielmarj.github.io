@@ -17,8 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Function to adjust the canvas size based on the viewport width
   function adjustCanvasSize() {
-    const vwWidth = Math.max(window.innerWidth * 0.75, 800)
-    const vwHeight = Math.max(window.innerHeight * 0.75, 800)
+    const vwWidth = Math.min(window.innerWidth * 0.75, 800)
+    const vwHeight = Math.min(window.innerHeight * 0.75, 800)
     return Math.max(vwWidth, vwHeight) // Ensure the canvas is square
   }
 
@@ -279,33 +279,5 @@ document.addEventListener('DOMContentLoaded', () => {
     b = Math.round((b + m) * 255)
     return [r, g, b]
   }
-
-  // Function to download the drawing
-  document.getElementById('download-btn').addEventListener('click', () => {
-    const canvas = document.querySelector('canvas')
-    const link = document.createElement('a')
-    link.href = canvas.toDataURL('image/png')
-    link.download = `mandala_${Date.now()}.png`
-    link.click()
-  })
-
-  // Function to display the gallery
-  function displayGallery() {
-    const galleryContainer = document.getElementById('gallery-container')
-    const drawings = [
-      // Add URLs of the drawings stored in the repository
-      'https://github.com/kielmarj/mandalaCreator/raw/main/drawings/mandala_1.png',
-      'https://github.com/kielmarj/mandalaCreator/raw/main/drawings/mandala_2.png'
-      // Add more URLs as needed
-    ]
-    drawings.forEach((url) => {
-      const img = document.createElement('img')
-      img.src = url
-      img.alt = 'User drawing'
-      galleryContainer.appendChild(img)
-    })
-  }
-
-  // Call displayGallery on page load
-  displayGallery()
 });
+
