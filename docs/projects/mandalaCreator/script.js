@@ -81,7 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
     strokes.push(buffer.get())
   }
 
-  // Function to simulate mouse events for touch inputs
   function simulateMouseEvent(x, y) {
     const canvasRect = canvas.elt.getBoundingClientRect() // Get canvas position and size
     const scaleX = canvas.width / canvasRect.width // Account for CSS scaling
@@ -93,7 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
     pmouseY = mouseY
   }
 
-  // Main draw function called repeatedly
   window.draw = function () {
     if (isDrawing || mouseIsPressed) {
       const drawColor = getCurrentStrokeColor()
@@ -123,7 +121,6 @@ document.addEventListener('DOMContentLoaded', () => {
     pop()
   }
 
-  // Function to get the coordinates for drawing lines
   function getLineCoordinates() {
     const lineStartX = mouseX - buffer.width / 2
     const lineStartY = mouseY - buffer.height / 2
@@ -132,38 +129,33 @@ document.addEventListener('DOMContentLoaded', () => {
     return [lineStartX, lineStartY, lineEndX, lineEndY]
   }
 
-  // Function to get the current stroke color
   function getCurrentStrokeColor() {
     const eraserToggle = document.getElementById('eraser-toggle').checked
     return eraserToggle
       ? backgroundColor
       : color(
-        currentStrokeColor.levels[0],
-        currentStrokeColor.levels[1],
-        currentStrokeColor.levels[2],
-        currentStrokeColor.levels[3]
-      )
+          currentStrokeColor.levels[0],
+          currentStrokeColor.levels[1],
+          currentStrokeColor.levels[2],
+          currentStrokeColor.levels[3]
+        )
   }
 
-  // Function to handle mouse press events
   window.mousePressed = function () {
     updateStrokeColor()
   }
 
-  // Event listener for the reset button
   document.getElementById('reset-btn').addEventListener('click', () => {
     buffer.background(backgroundColor)
     background(backgroundColor)
     strokes = [] // Clear the strokes array
   })
 
-  // Event listener for the stroke weight slider
   document.getElementById('stroke-weight-slider').addEventListener('input', (e) => {
     strokeWeightValue = parseFloat(e.target.value)
     document.getElementById('stroke-weight-value').textContent = strokeWeightValue
   })
 
-  // Event listeners for color mode radio buttons
   document.querySelectorAll('input[name="color-mode"]').forEach((input) => {
     input.addEventListener('change', () => {
       const colorPicker = document.getElementById('color-picker')
@@ -178,25 +170,21 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   })
 
-  // Event listener for the color picker
   document.getElementById('color-picker').addEventListener('input', (e) => {
     const hex = e.target.value
     currentStrokeColor = color(hex)
   })
 
-  // Event listener for the background color picker
   document.getElementById('background-color-picker').addEventListener('input', (e) => {
     backgroundColor = e.target.value
     buffer.background(backgroundColor)
     background(backgroundColor)
   })
 
-  // Event listener for the save button
   document.getElementById('save-btn').addEventListener('click', () => {
     saveCanvas('mandala', 'png')
   })
 
-  // Event listener for the undo button
   document.getElementById('undo-btn').addEventListener('click', () => {
     if (strokes.length > 0) {
       strokes.pop() // Remove the last stroke
@@ -209,14 +197,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })
 
-  // Event listener for the symmetry slider
   document.getElementById('symmetry-slider').addEventListener('input', (e) => {
     symmetry = parseInt(e.target.value)
     angle = 360 / symmetry
     document.getElementById('symmetry-value').textContent = symmetry
   })
 
-  // Function to handle window resize events
   window.windowResized = function () {
     const newSize = adjustCanvasSize()
     const scaleFactor = newSize / originalSize
@@ -234,7 +220,6 @@ document.addEventListener('DOMContentLoaded', () => {
     originalSize = newSize
   }
 
-  // Function to update the stroke color based on the selected color mode
   function updateStrokeColor() {
     const colorMode = document.querySelector('input[name="color-mode"]:checked').value
     const colorPicker = document.getElementById('color-picker')
@@ -259,7 +244,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Function to convert HSL color to RGB
   function hslToRgb(h, s, l) {
     let r, g, b
     const c = (1 - Math.abs(2 * l - 1)) * s
@@ -295,4 +279,33 @@ document.addEventListener('DOMContentLoaded', () => {
     b = Math.round((b + m) * 255)
     return [r, g, b]
   }
+
+  // Function to download the drawing
+  document.getElementById('download-btn').addEventListener('click', () => {
+    const canvas = document.querySelector('canvas')
+    const link = document.createElement('a')
+    link.href = canvas.toDataURL('image/png')
+    link.download = `mandala_${Date.now()}.png`
+    link.click()
+  })
+
+  // Function to display the gallery
+  function displayGallery() {
+    const galleryContainer = document.getElementById('gallery-container')
+    const drawings = [
+      // Add URLs of the drawings stored in the repository
+      'https://github.com/kielmarj/mandalaCreator/raw/main/drawings/mandala_1.png',
+      'https://github.com/kielmarj/mandalaCreator/raw/main/drawings/mandala_2.png'
+      // Add more URLs as needed
+    ]
+    drawings.forEach((url) => {
+      const img = document.createElement('img')
+      img.src = url
+      img.alt = 'User drawing'
+      galleryContainer.appendChild(img)
+    })
+  }
+
+  // Call displayGallery on page load
+  displayGallery()
 });
