@@ -90,9 +90,9 @@ a:hover {
   gap: 1rem;
   justify-content: center;
   margin: 1rem auto;
-  max-width: 1020px;
+  max-width: 800px;
   padding: 1rem;
-  width: 75vw;
+  width: 80%;
 }
 
 #controls-container>div {
