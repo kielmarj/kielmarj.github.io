@@ -17,8 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Function to adjust the canvas size based on the viewport width
   function adjustCanvasSize() {
-    const vwWidth = Math.min(window.innerWidth * 0.75, 800)
-    const vwHeight = Math.min(window.innerHeight * 0.75, 800)
+    const vwWidth = Math.min(window.innerWidth * 0.85, 800)
+    const vwHeight = Math.min(window.innerHeight * 0.85, 800)
     return Math.max(vwWidth, vwHeight) // Ensure the canvas is square
   }
 
