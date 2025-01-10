@@ -65,10 +65,10 @@ a:hover {
   display: flex;
   justify-content: center;
   margin: 1% auto;
-  max-width: 75vw;
+  max-width: 600px;
   overflow: hidden;
   padding: 0;
-  width: 85vw;
+  width: 75vw;
 }
 
 /****** CONTROLS ******/
