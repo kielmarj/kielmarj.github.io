@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<!--
+ * Inspired by the original artwork by xero https://x-e.ro/ and this lua script:
+ * https://github.com/xero/dotfiles/blob/main/fun/.local/bin/2spooky.lua
+ * Ported to web by Jess Kielmar, (c) 2025
+ * https://github.com/kielmarj
+ -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hack Wars: Do you Even 1337?</title>
+  <style>
+    #warning-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: black;
+        color: mediumspringgreen;
+        font-family: monospace;
+        text-align: center;
+        z-index: 9999;
+    }
+    
+    #warning-screen p {
+        margin: 0 auto;
+        font-size: 0.95rem;
+    }
+
+    h1 {
+        font-size: 1.15rem;
+        margin: 0 auto;
+        color: crimson;
+    }
+
+    pre {
+        margin: 1% auto;
+        font-size: 0.6rem;
+        color: #fff;
+    }
+
+    #attempt-button {
+        background-color: crimson;
+        color: #000;
+        border: none;
+        border-radius: 0.25rem;
+        padding: 0.5rem;
+        font-family: monospace;
+        font-weight: bold;
+        font-size: 0.65rem;
+        margin: 0 auto;
+        cursor: pointer;
+    }
+
+    .warning {
+        font-size: 0.75rem;
+        color: yellow;
+    }
+    
+    .finetext {
+        color: grey;
+        font-size: 0.6rem;
+    }
+
+    body {
+        background-color: black;
+        color: mediumspringgreen;
+        font-family: monospace;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        white-space: pre;
+        font-size: 0.65rem;
+        flex-direction: column;
+    }
+
+    .ascii-art {
+        width: 90%;
+        margin: 1% auto;
+        padding: 0;
+    }
+
+    .ascii-art .eye {
+        color: crimson;
+        font-weight: bold;
+        position: relative;
+        display: inline-block;
+        animation: eyeMove 4s infinite linear
+    }
+
+    @keyframes eyeMove {
+        0%, 100% {
+            transform: translate(0, 0);
+        }
+        25% {
+            transform: translate(0, -0.4rem);
+        }
+        50% {
+            transform: translate(-2.75rem, -0.5rem);
+        }
+        75% {
+            transform: translate(-2.75rem, 0);
+        }
+    }
+
+    .ascii-art .bold {
+        font-weight: bold;
+    }
+
+    .ascii-art .red {
+        color: red;
+    }
+
+    .ascii-art .red.flash {
+        animation: redflash 3s infinite linear;
+    }
+
+    @keyframes redflash {
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+
+    .ascii-art .blue {
+        color: dodgerblue;
+    }
+
+    .ascii-art .yellow {
+        color: yellow;
+    }
+
+    .ascii-art .orange {
+        color: orange;
+    }
+
+    .ascii-art .white {
+        color: white;
+    }
+
+    .orange {
+        animation: orangerotate 2s infinite linear;
+        text-shadow: 0 0 0.25rem crimson;
+        transform: rotateY(0deg);
+        display: inline-block;
+    }
+
+    @keyframes orangerotate {
+        0% {
+            text-shadow: 0 0 0.25rem crimson;
+            transform: rotateY(0deg);
+        }
+        50% {
+            text-shadow: 0 0 0.25rem yellow;
+            transform: rotateY(180deg);
+        }
+        100% {
+            text-shadow: 0 0 0.25rem crimson;
+            transform: rotateY(360deg);
+        }
+    }
+
+    .ascii-art .yellow {
+        animation: yellowflash 1.3s infinite linear;
+    }
+
+    @keyframes yellowflash {
+        0%,
+        49.9% {
+            color: yellow;
+        }
+        50%,
+        100% {
+            color: crimson;
+        }
+    }
+
+    a {
+        color: aqua;
+    }
+    </style>
+</head>
+<body>
+<div id="warning-screen">
+<div id="challenge-section">
+<h1>⚠️ SECURE AREA ⚠️
+**REAL HACKERS ONLY**</h1>
+<p>Welcome to the
+CyberGarbage Secure Network.
+Access to this page is <strong>strictly</strong>
+limited to certified 1337 Hackers™.
+If you are not a REAL hacker,
+close this page immediately
+and report yourself to the
+nearest sysadmin.
+
+<pre><code>int x = ((y >> 5) & 1024) ^ (z << (n * 1337));
+if (access == "granted" && (hash % undefined) !== 0)
+return decrypt("h4ck3d.txt");</code></pre>
+
+<div class="warning">WARNING: 3 ATTEMPTS ONLY!*</div>
+<button id="attempt-button">DECRYPT</button>
+
+
+<section class="finetext">
+*More than 3 failures initializes chaos.exe!<br><sub>No one knows what it does...</section></div>
+<div id="feedback" style="display: none; font-size: 1.5rem; color: red; font-weight: bold; margin-top: 2rem;"></div>
+</div>
+<div class="ascii-art">
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+,~~~~~~~~~~~~~,                  <span class="red">..:::::::::..</span>                   ,~~~~~~~~~~~~~,
+:<span class="blue"> .-======-,</span>  :             <span class="red">..:::</span><span class="bold white">aad8888888baa</span><span class="red">:::..</span>              :<span class="red">Exploit-the</span>  :
+:<span class="blue"> ||<span class="orange">H4CK3R</span>|#</span>  :          <span class="red">.::::</span><span class="bold white">d<span class="red">:</span>?88888888888?<span class="red">:</span>8b</span><span class="red">::::.</span>            :<span class="blue">.-------,./|</span> :
+:<span class="blue"> ||______||</span>  :====    <span class="red">.:::</span><span class="bold white">d8888<span class="red">:</span>?88888888??a888888b</span><span class="red">:::.</span>     ====: <span class="blue"> VIRUS    / </span>:
+:<span class="blue"> |   ___  |</span>  :   |  <span class="red">.:::</span><span class="bold white">d8888888a8888888aa8888888888b</span><span class="red">:::.</span>  |    :<span class="blue"> \ DROPPER 7</span> :
+:<span class="blue"> |  |[] | |</span>  :    =<span class="red">::::</span><span class="bold white">dP</span><span class="red">::::::::</span><span class="bold white">88888888888</span><span class="red">::::::::</span><span class="bold white">Yb</span><span class="red">::::</span>==    :<span class="blue">  ~.  ,--.( </span> :
+:<span class="blue">  `-------'</span>  :    <span class="red">::::</span><span class="bold white">dP</span><span class="red">:::::::::</span><span class="bold white">Y888888888P</span><span class="red">:::::::::</span><span class="bold white">Yb</span><span class="red">::::</span>     :<span class="blue">    '~    `;</span> :
+:<span class="red">Reverse-</span>     :   <span class="red">::::</span><span class="bold white">d8</span><span class="red">:::::::::::</span><span class="bold white">Y8888888P</span><span class="red">:::::::::::</span><span class="bold white">8b</span><span class="red">::::</span>    :<span class="red">Nation's-Data</span>:
+:<span class="red">Engineering</span>  :  <span class="red">.::::</span><span class="bold white">88</span><span class="red">:::::::::::</span><span class="eye">@</span><span class="bold white">Y88888P</span><span class="red">:::::::::::</span><span class="eye">@</span><span class="bold white">88</span><span class="red">::::.</span>    `~~~~~~~~~~~~'
+ `~~~~~~~~~~~~'  <span class="red">:::::</span><span class="bold white">Y8baaaaaaaaaa88P</span><span class="red">:</span><span class="bold white">T</span><span class="red">:</span><span class="bold white">Y88aaaaaaaaaad8P</span><span class="red">:::::</span>
+                 <span class="red">:::::::</span><span class="bold white">Y88888888888P</span><span class="red">::</span><span class="bold white">|</span><span class="red">::</span><span class="bold white">Y88888888888P</span><span class="red">:::::::</span>
+,~~~~~~~~~~~~~,  <span class="red">::::::::::::::::</span><span class="bold white">888</span><span class="red">:::</span><span class="bold white">|</span><span class="red">:::</span><span class="bold white">888</span><span class="red">::::::::::::::::</span>   ,~~~~~~~~~~~~~,
+: <span class="red">R00T-KITS</span>   :  <span class="red">`:::::::::::::::</span><span class="bold white">8888888888888b</span><span class="red">::::::::::::::'</span>   :<span class="red">HoM3-$w33t</span>   :
+:<span class="blue">  ____   __  </span>:   <span class="red">:::::::::::::::</span><span class="bold white">88888888888888</span><span class="red">::::::::::::::</span>    :<span class="blue">    (I       </span>:
+:<span class="blue"> |    | |-_| </span>:    <span class="red">:::::::::::::</span><span class="bold white">d88888888888888</span><span class="red">:::::::::::::</span>     :<span class="blue">^^^  |    ^^^</span>:
+:<span class="blue"> |____|_|=_| </span>:     <span class="red">::::::::::::</span><span class="bold white">88</span><span class="red">::</span><span class="bold white">88</span><span class="red">::</span><span class="bold white">88</span><span class="red">:::</span><span class="bold white">88</span><span class="red">::::::::::::</span>      :<span class="blue">|u|_^^^^^_|u|</span>:
+:<span class="blue">  ____)_.___ </span>:      <span class="red">`::::::::::</span><span class="bold white">88</span><span class="red">::</span><span class="bold white">88</span><span class="red">::</span><span class="bold white">88</span><span class="red">:::</span><span class="bold white">88</span><span class="red">::::::::::'</span>       :<span class="blue">|_  u _ u  _|</span>:
+:<span class="blue"> /:::::;|  _)</span>:      =<span class="red">`:::::::::</span><span class="bold white">88</span><span class="red">::</span><span class="bold white">88</span><span class="red">::</span><span class="bold white">P</span><span class="red">::::</span><span class="bold white">88</span><span class="red">:::::::::'</span>=       :<span class="blue">  |__|;|__|  </span>:
+:<span class="blue"> `======' |_|</span>:      |  <span class="red">`:::::::</span><span class="bold white">88</span><span class="red">::</span><span class="bold white">88</span><span class="red">:::::::</span></span><span class="bold white">88</span><span class="red">:::::::'</span>   |      :   <span class="blue"> /_/</span>      :
+:<span class="red flash">Ur-Computer-</span> :=======    <span class="red">``:::::::::::::::::::::::''</span>     =======:<span class="red">H4x0r-HoM3-</span>  :
+:<span class="red flash">is-MY-Slave</span>  :                <span class="red">``::::::::::::::''</span>                :<span class="red flash"> *127.0.0.1*</span> :
+ `~~~~~~~~~~~~'                                                   `~~~~~~~~~~~~'
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+ -======-     <span class="yellow">+WARNING+"Illegal_Network_Connections_Beyond_Login"</span>       -======-
+ |<span class="orange">H4CK3R</span>|         <span class="yellow">-==  You are at the point of NO RETURN  ==-</span>           |<span class="orange">H4CK3R</span>|
+ |______|<span class="yellow">Your Activities:Will_be_Keylogged_and_Timestamped "USER_BEWARE"</span>|______|
+<span class="yellow">Hacking Sites: https://sites.google.com/site/lazyboxx * http://www.freebsd.org</span>
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-original art by <a href="https://x-e.ro/">xero</a>
+
+<p>&copy; 2099 <a href="https://github.com/kielmarj">CyberGarbage Inc.</a> All wrongs reversed.
+For legal complaints, scream into the void.
+<em>Certified 99% virus-free... maybe.</em>
+</p>
+</div>
+<script>
+  let buttonPressCount = 0;
+
+  const feedback = document.getElementById("feedback");
+  const challengeSection = document.getElementById("challenge-section");
+
+  document.getElementById("attempt-button").addEventListener("click", () => {
+    buttonPressCount++;
+    feedback.style.display = "block";
+    challengeSection.style.display = "none";
+
+    if (buttonPressCount === 1) {
+      feedback.innerHTML = "404:<br>SKILL NOT FOUND!<br><br>2/3 ATTEMPTS REMAINING!";
+        setTimeout(() => {
+          feedback.style.display = "none";
+          challengeSection.style.display = "block";
+      }, 2000);
+    } else if (buttonPressCount === 2) {
+      feedback.innerHTML =  "REPORTED YOUR IP<br>TO 127.0.0.1<br><br>1/3 ATTEMPTS REMAINING!!";
+        setTimeout(() => {
+          feedback.style.display = "none";
+          challengeSection.style.display = "block";
+      }, 2000);
+    } else if (buttonPressCount === 3) {
+      feedback.innerHTML = 'FAIL!<br><br>You were warned,<br>"hacker"';
+        setTimeout(() => {
+          feedback.style.display = "none";
+          document.getElementById("warning-screen").style.display = "none";
+      }, 2000);
+    }
+  });
+</script>
+</body>
+</html>
